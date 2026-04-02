@@ -24,7 +24,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 #app{display:none;min-height:100vh;}
 .topbar{background:var(--card);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:10;}
 .topbar-logo{font-family:'DM Serif Display',serif;font-size:17px;color:var(--green-dark);}
-.topbar-user{font-size:13px;color:var(--muted);}
 .logout-btn{font-size:13px;color:var(--muted);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px;}
 .logout-btn:hover{background:var(--bg);}
 .tabs-wrap{background:var(--card);border-bottom:1px solid var(--border);padding:0 1.25rem;overflow-x:auto;white-space:nowrap;}
@@ -92,6 +91,47 @@ textarea{resize:vertical;min-height:80px;}
 .type-btn{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;}
 .type-btn.active{background:var(--green-light);color:var(--green-dark);border-color:var(--green);}
 .type-btn.quote-t.active{background:var(--gold-light);color:var(--gold-dark);border-color:var(--gold);}
+.q-card{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:1.25rem;margin-bottom:1rem;}
+.q-label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.q-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;}
+.q-field label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:500;}
+.q-field input{width:100%;padding:9px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;}
+.q-field input:focus{border-color:var(--green);}
+.q-genbtn{width:100%;padding:12px;border-radius:10px;background:var(--green-dark);color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.q-genbtn:hover{background:var(--green);}
+.q-doc{background:#fff;color:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,0.1);}
+.q-doc-header{background:#0a0a0a;padding:1.5rem;text-align:center;}
+.q-doc-titlebar{background:#1D9E75;padding:8px;text-align:center;font-family:'Georgia',serif;font-size:16px;color:#fff;letter-spacing:.04em;}
+.q-doc-body{padding:1.25rem 1.5rem;}
+.q-info-grid{border:1.5px solid #1a1a1a;border-radius:8px;overflow:hidden;margin-bottom:1rem;}
+.q-info-row{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid #e0e0e0;font-size:13px;}
+.q-info-row:last-child{border-bottom:none;}
+.q-info-key{padding:9px 12px;font-weight:600;background:#f5f5f5;border-right:1px solid #e0e0e0;}
+.q-info-val{padding:9px 12px;}
+.q-sec-title{font-family:'Georgia',serif;font-size:15px;margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid #1D9E75;color:#1a1a1a;}
+.q-includes{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:1rem;}
+.q-inc{display:flex;align-items:center;gap:7px;font-size:12px;color:#1a1a1a;}
+.q-dot{width:14px;height:14px;background:#1D9E75;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:8px;color:#fff;font-weight:700;}
+.q-why{list-style:none;margin-bottom:1rem;}
+.q-why li{font-size:12px;color:#1a1a1a;padding:4px 0;display:flex;gap:7px;align-items:flex-start;}
+.q-why-dot{width:5px;height:5px;background:#1D9E75;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.q-comp{background:#0a0a0a;border-radius:10px;padding:1.25rem;margin-bottom:1rem;}
+.q-comp-title{font-family:'Georgia',serif;color:#fff;font-size:14px;margin-bottom:4px;text-align:center;}
+.q-comp-sub{font-size:10px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;}
+.q-comp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
+.q-comp-item{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,0.05);border-radius:6px;}
+.q-comp-name{font-size:11px;color:rgba(255,255,255,0.7);}
+.q-comp-price{font-size:12px;font-weight:600;color:#EF9F27;}
+.q-comp-div{height:1px;background:rgba(255,255,255,0.1);margin:8px 0;}
+.q-hl-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#1D9E75;border-radius:6px;}
+.q-hl-label{font-size:12px;color:#fff;font-weight:600;}
+.q-hl-price{font-size:16px;font-weight:700;color:#fff;}
+.q-save-note{text-align:center;font-size:10px;color:rgba(255,255,255,0.6);margin-top:8px;}
+.q-note{font-size:11px;color:#444;margin-bottom:.5rem;}
+.q-resetbtn{width:100%;padding:9px;border-radius:8px;background:transparent;color:var(--muted);border:1px solid rgba(0,0,0,0.12);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;}
+.price-struck{color:#999;text-decoration:line-through;margin-right:5px;font-size:12px;}
+.price-green{color:#085041;font-weight:700;font-size:15px;}
 @media(max-width:480px){.form-row.cols3,.form-row.cols4{grid-template-columns:1fr 1fr;}.owner-hero{flex-direction:column;gap:8px;text-align:center;}.metric-3{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
@@ -110,7 +150,7 @@ textarea{resize:vertical;min-height:80px;}
 <div class="topbar">
 <div class="topbar-logo">Heartland</div>
 <div style="display:flex;align-items:center;gap:12px;">
-<span class="topbar-user" id="topbar-name"></span>
+<span style="font-size:13px;color:var(--muted);" id="topbar-name"></span>
 <button class="logout-btn" onclick="doLogout()">Sign out</button>
 </div>
 </div>
@@ -119,6 +159,8 @@ textarea{resize:vertical;min-height:80px;}
 </div>
 <script>
 let currentUser=null;
+const EMP_COLORS=['#1D9E75','#378ADD','#534AB7','#BA7517','#D85A30','#D4537E','#639922','#888780','#E24B4A'];
+const STATUS_COLORS={new:{bg:'#FAEEDA',color:'#633806',label:'New'},ordered:{bg:'#E6F1FB',color:'#0C447C',label:'Lights ordered'},scheduled:{bg:'#EEEDFE',color:'#3C3489',label:'Scheduled'},installed:{bg:'#EAF3DE',color:'#085041',label:'Installed'}};
 async function api(method,path,body){const res=await fetch(path,{method,headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,credentials:'include'});return res.json();}
 async function doLogin(){const username=document.getElementById('l-user').value.trim();const password=document.getElementById('l-pass').value.trim();const err=document.getElementById('l-err');err.classList.add('hidden');const res=await api('POST','/api/login',{username,password});if(res.error){err.classList.remove('hidden');return;}currentUser=res;showApp();}
 async function doLogout(){await api('POST','/api/logout');currentUser=null;document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex';}
@@ -126,979 +168,192 @@ document.getElementById('l-pass').addEventListener('keydown',e=>{if(e.key==='Ent
 function fmt(n){return'$'+Math.round(n).toLocaleString();}
 function pct(a,b){return b>0?Math.min(100,Math.round((a/b)*100)):0;}
 function ini(name){return name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();}
-function showApp(){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='block';document.getElementById('topbar-name').textContent=currentUser.name;if(currentUser.role==='owner')renderOwnerApp();else if(currentUser.role==='secretary')renderSecretaryApp();else renderEmployeeApp();}
 function setupTabs(tabs,def){const wrap=document.getElementById('tabs-wrap');const content=document.getElementById('content');wrap.innerHTML=tabs.map(t=>`<button class="tab-btn ${t.id===def?'active':''}" onclick="switchTab('${t.id}',this)">${t.label}</button>`).join('');content.innerHTML=tabs.map(t=>`<div class="view ${t.id===def?'active':''}" id="${t.id}"></div>`).join('');}
 function switchTab(id,btn){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
 function postHTML(p,canDelete){if(p.type==='quote'){return`<div class="post-card quote"><div class="quote-text">"${p.body}"</div><div class="quote-author">— ${p.author}</div><div style="display:flex;justify-content:space-between;margin-top:8px;"><div style="font-size:11px;color:var(--gold);">Weekly quote · ${p.date}</div>${canDelete?`<button class="del-btn" onclick="deletePost(${p.id})">×</button>`:''}</div></div>`;}return`<div class="post-card ${p.pin?'pinned':''}"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><div style="font-size:12px;font-weight:500;">To: ${p.target}${p.pin?'<span class="badge badge-pin">Pinned</span>':''}</div>${canDelete?`<button class="del-btn" onclick="deletePost(${p.id})">×</button>`:''}</div><div class="post-body">${p.body}</div><div class="post-meta">${p.date}</div></div>`;}
-async function renderEmployeeApp(){const data=await api('GET','/api/my-stats');setupTabs([{id:'my-dash',label:'My dashboard'},{id:'board',label:'Team board'}],'my-dash');const goal=data.goal;const p=goal?pct(data.revenue,goal.target):0;const achieved=goal&&data.revenue>=goal.target;document.getElementById('my-dash').innerHTML=`<div class="earned-hero"><div class="earned-label">Your total earned</div><div class="earned-amount">${fmt(data.earned)}</div><div class="earned-sub">${data.installs} install${data.installs!==1?'s':''} · ${data.rate}% commission rate</div></div><div class="metrics"><div class="metric"><div class="metric-label">Revenue generated</div><div class="metric-value">${fmt(data.revenue)}</div></div><div class="metric"><div class="metric-label">Installs completed</div><div class="metric-value">${data.installs}</div></div></div>${goal?`<div class="goal-card ${achieved?'achieved':''}"><div class="section-label">Your goal</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div><div style="font-size:15px;font-weight:500;">${goal.prize}</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">${achieved?'You did it!':'Keep going — you\'re '+p+'% there'}</div></div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved':p+'%'}</span></div><div class="prog-track"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:12px;color:var(--muted);"><span>Current: ${fmt(data.revenue)}</span><span>${achieved?'Goal unlocked!':'Need '+fmt(Math.max(0,goal.target-data.revenue))+' more'}</span><span>Target: ${fmt(goal.target)}</span></div></div>`:''} ${data.sales.length>0?`<div class="card"><div class="section-label">Recent sales</div><table class="sales-table"><tr><th>Date</th><th>Address</th><th>Amount</th><th>Earned</th></tr>${data.sales.map(s=>`<tr><td>${s.date}</td><td>${s.address||'—'}</td><td>${fmt(s.amount)}</td><td style="color:var(--green-dark);font-weight:500;">${fmt(s.amount*data.rate/100)}</td></tr>`).join('')}</table></div>`:''}`;
-document.getElementById('board').innerHTML=data.posts.length===0?'<div class="card" style="color:var(--muted);font-size:14px;">No posts yet.</div>':data.posts.map(p=>postHTML(p,false)).join('');}
-async function renderOwnerApp(){setupTabs([{id:'overview',label:'Overview'},{id:'team',label:'Team'},{id:'goals',label:'Goals'},{id:'board-owner',label:'Team board'},{id:'log-sale',label:'Log sale'},{id:'manage',label:'Manage'}],'overview');await refreshOwner();}
-async function refreshOwner(){const[empData,goals,posts]=await Promise.all([api('GET','/api/employees'),api('GET','/api/goals'),api('GET','/api/posts')]);renderOverview(empData,goals);renderTeam(empData,goals);renderGoals(empData,goals);renderBoard(posts);renderLogSale(empData);renderManage(empData);}
-function renderOverview(empData,goals){const{employees,ownerSales}=empData;const totalRev=employees.reduce((s,e)=>s+e.revenue,0)+ownerSales.revenue;const totalComm=employees.reduce((s,e)=>s+e.earned,0);const totalInst=employees.reduce((s,e)=>s+e.installs,0)+ownerSales.installs;const ownerEarnings=ownerSales.revenue+employees.reduce((s,e)=>s+(e.revenue-e.earned),0);document.getElementById('overview').innerHTML=`<div class="owner-hero"><div><div style="font-size:13px;color:var(--green);font-weight:500;">Your total earnings</div><div style="font-size:12px;color:var(--green);margin-top:2px;">your sales + share after paying commissions</div></div><div class="owner-hero-amount">${fmt(ownerEarnings)}</div></div><div class="metrics metric-3"><div class="metric"><div class="metric-label">Total revenue</div><div class="metric-value">${fmt(totalRev)}</div></div><div class="metric"><div class="metric-label">Paid in commissions</div><div class="metric-value">${fmt(totalComm)}</div></div><div class="metric"><div class="metric-label">Total installs</div><div class="metric-value">${totalInst}</div></div></div><div class="card"><div class="section-label">Breakdown</div>${[...employees].sort((a,b)=>b.revenue-a.revenue).map(e=>`<div class="emp-item"><div class="avatar" style="width:36px;height:36px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div class="emp-name">${e.name}</div><div class="emp-sub">${e.installs} installs · ${e.rate}%</div></div><div style="text-align:right;"><div class="emp-earned-amount">${fmt(e.earned)}</div><div class="emp-earned-rev">${fmt(e.revenue)} rev · ${fmt(e.revenue-e.earned)} your share</div></div></div>`).join('')}${ownerSales.revenue>0?`<div class="emp-item" style="background:rgba(234,243,222,0.4);border-radius:8px;padding:12px 8px;"><div class="avatar" style="width:36px;height:36px;font-size:11px;background:#EAF3DE;color:#27500A">ME</div><div style="flex:1;"><div class="emp-name" style="color:var(--green-dark)">You (owner)</div><div class="emp-sub">${ownerSales.installs} installs · 100%</div></div><div style="text-align:right;"><div class="emp-earned-amount">${fmt(ownerSales.revenue)}</div><div class="emp-earned-rev">100% kept</div></div></div>`:''}</div>`;}
-function renderTeam(empData,goals){document.getElementById('team').innerHTML=[...empData.employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>{const goal=goals.find(g=>g.userId===e.id);const p=goal?pct(e.revenue,goal.target):0;const achieved=goal&&e.revenue>=goal.target;return`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><div style="font-size:12px;font-weight:600;color:var(--muted);width:20px;">#${i+1}</div><div class="avatar" style="width:40px;height:40px;font-size:12px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div style="font-size:15px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:var(--muted);">${e.installs} installs · ${e.rate}% rate</div></div></div><div style="background:var(--green-light);border-radius:10px;padding:1rem;text-align:center;margin-bottom:10px;"><div style="font-size:12px;color:var(--green);font-weight:500;margin-bottom:4px;">Total earned</div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--green-dark);">${fmt(e.earned)}</div><div style="font-size:12px;color:var(--green);margin-top:4px;">from ${fmt(e.revenue)} in revenue</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div class="metric"><div class="metric-label">Your share</div><div class="metric-value" style="font-size:18px;">${fmt(e.revenue-e.earned)}</div></div><div class="metric"><div class="metric-label">Installs</div><div class="metric-value" style="font-size:18px;">${e.installs}</div></div></div>${goal?`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div style="font-size:13px;font-weight:500;">Goal: ${goal.prize}</div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved!':p+'%'}</span></div><div class="prog-track"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="font-size:11px;color:var(--muted);margin-top:4px;">${achieved?'Goal unlocked!':'Needs '+fmt(Math.max(0,goal.target-e.revenue))+' more'}</div></div>`:''}</div>`;}).join('');}
-function renderGoals(empData,goals){const empOptions=empData.employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join('');document.getElementById('goals').innerHTML=`<div class="card"><div class="section-label">Set a goal</div><div class="form-row cols4"><select id="g-emp">${empOptions}</select><input type="number" id="g-target" placeholder="Target $"><input type="text" id="g-prize" placeholder="Prize (e.g. $500 cash)"><button class="btn btn-green" onclick="addGoal()">+ Set</button></div></div>${goals.length===0?'<div style="font-size:14px;color:var(--muted);padding:.5rem 0;">No goals set yet.</div>':goals.map(g=>{const e=empData.employees.find(x=>x.id===g.userId);if(!e)return'';const p=pct(e.revenue,g.target);const achieved=e.revenue>=g.target;return`<div class="goal-card ${achieved?'achieved':''}"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar" style="width:32px;height:32px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved: ':'Prize: '}${g.prize}</span></div><div style="text-align:right;font-size:13px;font-weight:500;">${fmt(e.revenue)} / ${fmt(g.target)}</div><button class="del-btn" onclick="deleteGoal(${g.id})">×</button></div><div class="prog-track" style="height:10px;"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--muted);"><span>Current: ${fmt(e.revenue)}</span><span style="color:${achieved?'var(--green)':'var(--muted)'};">${achieved?'Unlocked!':'Need '+fmt(Math.max(0,g.target-e.revenue))+' more'}</span><span>Target: ${fmt(g.target)}</span></div></div>`;}).join('')}`;}
-function renderBoard(posts){const el=document.getElementById('board-owner');if(!el)return;el.innerHTML=`<div class="card"><div class="section-label">Post to team</div><div class="type-toggle"><button class="type-btn active" id="tb-msg" onclick="setBoardType('msg')">Message</button><button class="type-btn quote-t" id="tb-quote" onclick="setBoardType('quote')">Weekly quote</button></div><div id="compose-msg"><textarea id="p-body" placeholder="Write a message to your team..."></textarea><div class="form-row cols3" style="margin-top:8px;"><input type="text" id="p-target" placeholder="To: All team"><label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer;"><input type="checkbox" id="p-pin" style="width:auto;"> Pin to top</label><button class="btn btn-green" onclick="postMessage()">Post</button></div></div><div id="compose-quote" class="hidden"><textarea id="q-body" placeholder="Paste your motivational quote here..."></textarea><div class="form-row cols3" style="margin-top:8px;"><input type="text" id="q-author" placeholder="— Author name"><div></div><button class="btn btn-green" onclick="postQuote()">Post quote</button></div></div></div><div id="posts-list">${posts.length===0?'<div style="font-size:14px;color:var(--muted);">No posts yet.</div>':[...posts].sort((a,b)=>(b.pin?1:0)-(a.pin?1:0)).map(p=>postHTML(p,true)).join('')}</div>`;}
-function renderLogSale(empData){const empOptions=empData.employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join('');document.getElementById('log-sale').innerHTML=`<div class="card"><div class="section-label">Log a new sale</div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Employee</label><select id="s-emp">${empOptions}</select></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Sale amount $</label><input type="number" id="s-amount" placeholder="e.g. 1400"></div></div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Address</label><input type="text" id="s-address" placeholder="123 Main St"></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Date</label><input type="date" id="s-date" value="${new Date().toISOString().split('T')[0]}"></div></div><button class="btn btn-green" onclick="logSale()">Log sale</button><div id="s-confirm" class="hidden" style="font-size:13px;color:var(--green);margin-top:8px;font-weight:500;">Sale logged!</div></div><div class="card"><div class="section-label">Your own sales</div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Your revenue $</label><input type="number" id="o-rev" placeholder="0" value="${empData.ownerSales.revenue}"></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Your installs</label><input type="number" id="o-inst" placeholder="0" value="${empData.ownerSales.installs}"></div></div><button class="btn btn-green" onclick="saveOwnerSales()">Save</button></div>`;}
-function renderManage(empData){document.getElementById('manage').innerHTML=`<div class="card"><div class="section-label">Add employee</div><div class="form-row cols2"><input type="text" id="m-name" placeholder="Full name"><input type="text" id="m-user" placeholder="Username"></div><div class="form-row cols2"><input type="password" id="m-pass" placeholder="Password"><input type="number" id="m-rate" placeholder="Commission % (e.g. 40)"></div><button class="btn btn-green" onclick="addEmployee()">+ Add employee</button><div id="m-confirm" class="hidden" style="font-size:13px;color:var(--green);margin-top:8px;font-weight:500;">Employee added!</div></div><div class="card"><div class="section-label">Update rates & passwords</div>${empData.employees.map(e=>`<div style="display:grid;grid-template-columns:1fr 90px 90px 90px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><div style="font-size:14px;">${e.name}</div><div style="display:flex;align-items:center;gap:4px;"><input type="number" value="${e.rate}" id="rate-${e.id}" style="width:55px;text-align:center;" min="1" max="100"><span style="font-size:12px;color:var(--muted);">%</span></div><button class="btn btn-sm" onclick="updateRate(${e.id})">Save rate</button><div style="display:flex;gap:4px;"><input type="password" placeholder="New pw" id="pw-${e.id}" style="width:80px;"><button class="btn btn-sm" onclick="updatePassword(${e.id})">Set</button></div></div>`).join('')}</div>`;}
-async function renderSecretaryApp(){const empData=await api('GET','/api/employees');setupTabs([{id:'sec-sales',label:'Log sale'},{id:'sec-team',label:'Team'}],'sec-sales');const empOptions=empData.employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join('');document.getElementById('sec-sales').innerHTML=`<div class="card"><div class="section-label">Log a new sale</div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Employee</label><select id="ss-emp">${empOptions}</select></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Sale amount $</label><input type="number" id="ss-amount" placeholder="e.g. 1400"></div></div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Address</label><input type="text" id="ss-address" placeholder="123 Main St"></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Date</label><input type="date" id="ss-date" value="${new Date().toISOString().split('T')[0]}"></div></div><button class="btn btn-green" onclick="logSaleSecretary()">Log sale</button><div id="ss-confirm" class="hidden" style="font-size:13px;color:var(--green);margin-top:8px;font-weight:500;">Sale logged!</div></div>`;document.getElementById('sec-team').innerHTML=`<div class="card"><div class="section-label">Team overview</div>${[...empData.employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`<div class="emp-item"><div style="font-size:12px;color:var(--muted);width:20px;">#${i+1}</div><div class="avatar" style="width:36px;height:36px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div class="emp-name">${e.name}</div><div class="emp-sub">${e.installs} installs · ${e.rate}%</div></div><div style="text-align:right;"><div class="emp-earned-amount">${fmt(e.earned)}</div><div class="emp-earned-rev">${fmt(e.revenue)} rev</div></div></div>`).join('')}</div>`;}
+function showApp(){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='block';document.getElementById('topbar-name').textContent=currentUser.name;if(currentUser.role==='owner')renderOwnerApp();else if(currentUser.role==='secretary')renderSecretaryApp();else renderEmployeeApp();}
+
+// ─── CALENDAR ───
+function buildCalendar(sales,rate,containerId,showAll,employees){
+  const el=document.getElementById(containerId);if(!el)return;
+  const dayNames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let weekOffset=0;
+  function ds(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function getWeek(off){const now=new Date();const start=new Date(now);start.setDate(now.getDate()-now.getDay()+(off*7));return Array.from({length:7},(_,i)=>{const d=new Date(start);d.setDate(start.getDate()+i);return d;});}
+  function render(){
+    const dates=getWeek(weekOffset);const todayStr=ds(new Date());
+    const startL=monthNames[dates[0].getMonth()]+' '+dates[0].getDate();
+    const endL=monthNames[dates[6].getMonth()]+' '+dates[6].getDate()+', '+dates[6].getFullYear();
+    const weekSales=sales.filter(s=>{const d=new Date(s.date+'T12:00:00');return dates.some(wd=>ds(wd)===ds(d));});
+    const weekEarned=weekSales.reduce((sum,s)=>{if(showAll&&employees){const emp=employees.find(e=>e.id===s.userId);return sum+(emp?s.amount*(emp.rate/100):0);}return sum+s.amount*(rate/100);},0);
+    const weekRev=weekSales.reduce((sum,s)=>sum+s.amount,0);
+    el.innerHTML=`
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <button onclick="window['_cn_${containerId}'](-1)" style="background:none;border:0.5px solid rgba(0,0,0,0.15);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text);font-family:'DM Sans',sans-serif;">← Prev</button>
+        <div style="font-size:14px;font-weight:500;color:var(--text);">${startL} – ${endL}</div>
+        <button onclick="window['_cn_${containerId}'](1)" style="background:none;border:0.5px solid rgba(0,0,0,0.15);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text);font-family:'DM Sans',sans-serif;">Next →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;">
+        <div style="background:var(--bg);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:500;">${showAll?'Week revenue':'Week earned'}</div><div style="font-size:22px;font-weight:600;">${showAll?fmt(weekRev):fmt(weekEarned)}</div></div>
+        <div style="background:var(--bg);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:500;">Jobs this week</div><div style="font-size:22px;font-weight:600;">${weekSales.length}</div></div>
+        <div style="background:var(--bg);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:500;">Avg per job</div><div style="font-size:22px;font-weight:600;">${weekSales.length>0?fmt((showAll?weekRev:weekEarned)/weekSales.length):'$0'}</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:1rem;">
+        ${dayNames.map(d=>`<div style="text-align:center;font-size:10px;font-weight:600;color:var(--muted);padding:4px 0;text-transform:uppercase;letter-spacing:.04em;">${d}</div>`).join('')}
+        ${dates.map(d=>{
+          const dayStr=ds(d);const dayJobs=sales.filter(s=>ds(new Date(s.date+'T12:00:00'))===dayStr);const isToday=dayStr===todayStr;const hasJob=dayJobs.length>0;
+          const dots=showAll&&employees?dayJobs.map(j=>{const emp=employees.find(e=>e.id===j.userId);const color=emp?EMP_COLORS[employees.indexOf(emp)%EMP_COLORS.length]:'#1D9E75';return`<div style="width:8px;height:8px;border-radius:50%;background:${color};display:inline-block;margin:1px;"></div>`;}).join(''):(hasJob?`<div style="background:#EAF3DE;border-radius:4px;padding:2px 4px;font-size:10px;color:#085041;font-weight:600;margin-bottom:2px;">${dayJobs.length} job${dayJobs.length>1?'s':''}</div><div style="font-size:10px;color:#3B6D11;font-weight:500;">${fmt(dayJobs.reduce((s,j)=>s+j.amount*(rate/100),0))}</div>`:'');
+          return`<div style="background:${hasJob?'#EAF3DE':'var(--card)'};border:${isToday?'1.5px solid #1D9E75':'0.5px solid rgba(0,0,0,0.08)'};border-radius:8px;padding:6px;min-height:64px;"><div style="font-size:12px;font-weight:${isToday?'700':'500'};color:${isToday?'#085041':'var(--muted)'};margin-bottom:4px;">${d.getDate()}</div>${dots}</div>`;
+        }).join('')}
+      </div>
+      ${weekSales.length>0?`<div style="background:var(--card);border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1rem 1.25rem;"><div style="font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Jobs this week</div>${weekSales.map(s=>{const emp=showAll&&employees?employees.find(e=>e.id===s.userId):null;const earned=emp?s.amount*(emp.rate/100):s.amount*(rate/100);const color=emp?EMP_COLORS[employees.indexOf(emp)%EMP_COLORS.length]:'#1D9E75';const d=new Date(s.date+'T12:00:00');return`<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);"><div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;"></div><div style="font-size:12px;color:var(--muted);width:50px;">${dayNames[d.getDay()]} ${d.getDate()}</div>${emp?`<div style="font-size:13px;font-weight:500;flex:1;">${emp.name}</div>`:`<div style="font-size:13px;flex:1;">${s.address||'—'}</div>`}<div style="font-size:13px;font-weight:600;color:#085041;">${fmt(showAll?s.amount:earned)}</div></div>`;}).join('')}</div>`:'<div style="text-align:center;font-size:13px;color:var(--muted);padding:1rem 0;">No jobs this week</div>'}
+    `;
+  }
+  window[`_cn_${containerId}`]=function(dir){weekOffset+=dir;render();};
+  render();
+}
+
+// ─── QUOTE GENERATOR ───
+function quoteGeneratorHTML(){
+  return`<div class="q-card" id="qform"><div class="q-label">Generate customer quote</div><div class="q-grid"><div class="q-field"><label>Customer address</label><input type="text" id="qa-addr" placeholder="123 Main St, Aberdeen SD"></div><div class="q-field"><label>Building type</label><input type="text" id="qa-bld" placeholder="Front house, wrapped around garage"></div></div><div class="q-grid3"><div class="q-field"><label>Footage (ft)</label><input type="number" id="qa-ft" placeholder="170" oninput="qCalc()"></div><div class="q-field"><label>Price per foot ($)</label><input type="number" id="qa-ppf" placeholder="15" oninput="qCalc()"></div><div class="q-field"><label>Discount ($)</label><input type="number" id="qa-disc" placeholder="0" oninput="qCalc()"></div></div><div style="background:var(--bg);border-radius:8px;padding:10px 14px;margin-bottom:12px;display:flex;gap:20px;flex-wrap:wrap;"><span style="font-size:12px;color:var(--muted);">Original: <b id="qc-orig">$0</b></span><span style="font-size:12px;color:var(--muted);">Final: <b style="color:#1D9E75;" id="qc-final">$0</b></span><span style="font-size:12px;color:var(--muted);">Discount: <b style="color:#BA7517;" id="qc-disc">$0</b></span></div><button class="q-genbtn" onclick="qGenerate()">Generate quote</button></div><div id="qdoc-wrap" style="display:none;"><div class="q-doc" id="qdoc"><div class="q-doc-header"><svg width="190" height="75" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="80" x2="200" y2="20" stroke="white" stroke-width="4" stroke-linecap="round"/><line x1="200" y1="20" x2="360" y2="80" stroke="white" stroke-width="4" stroke-linecap="round"/><line x1="30" y1="80" x2="370" y2="80" stroke="white" stroke-width="3"/><rect x="155" y="50" width="14" height="14" fill="none" stroke="white" stroke-width="2.5"/><rect x="175" y="50" width="14" height="14" fill="none" stroke="white" stroke-width="2.5"/><rect x="155" y="64" width="14" height="6" fill="none" stroke="white" stroke-width="2.5"/><rect x="175" y="64" width="14" height="6" fill="none" stroke="white" stroke-width="2.5"/><rect x="88" y="20" width="8" height="30" fill="white"/><rect x="84" y="16" width="16" height="6" fill="white"/><circle cx="105" cy="74" r="4" fill="#EF9F27"/><circle cx="125" cy="66" r="4" fill="#EF9F27"/><circle cx="147" cy="59" r="4" fill="#EF9F27"/><circle cx="170" cy="54" r="4" fill="#EF9F27"/><circle cx="195" cy="51" r="4" fill="#EF9F27"/><circle cx="220" cy="54" r="4" fill="#EF9F27"/><circle cx="243" cy="59" r="4" fill="#EF9F27"/><circle cx="265" cy="66" r="4" fill="#EF9F27"/><circle cx="285" cy="74" r="4" fill="#EF9F27"/><text x="200" y="110" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="28" fill="white" letter-spacing="4">HEARTLAND</text><text x="200" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="11" fill="rgba(255,255,255,0.7)" letter-spacing="6">PERMANENT LIGHTING</text></svg></div><div class="q-doc-titlebar">Custom Installation Quote</div><div class="q-doc-body"><div class="q-info-grid"><div class="q-info-row"><div class="q-info-key">Address</div><div class="q-info-val" id="qr-addr">—</div></div><div class="q-info-row"><div class="q-info-key">Building type</div><div class="q-info-val" id="qr-bld">—</div></div><div class="q-info-row"><div class="q-info-key">Footage</div><div class="q-info-val" id="qr-ft">—</div></div><div class="q-info-row"><div class="q-info-key">Price</div><div class="q-info-val" id="qr-price">—</div></div></div><div class="q-note">* Price includes materials and labor</div><div class="q-note" style="margin-bottom:1rem;">* Can choose white or black soffits for lights</div><div class="q-sec-title">What's included</div><div class="q-includes" style="margin-bottom:1rem;"><div class="q-inc"><div class="q-dot">✓</div><span>Custom measurement & layout</span></div><div class="q-inc"><div class="q-dot">✓</div><span>Professional installation</span></div><div class="q-inc"><div class="q-dot">✓</div><span>Secure outdoor mounting</span></div><div class="q-inc"><div class="q-dot">✓</div><span>App setup & walkthrough</span></div></div><div class="q-sec-title">Why homeowners love it</div><ul class="q-why"><li><div class="q-why-dot"></div><span>Full color control from your phone — change colors anytime</span></li><li><div class="q-why-dot"></div><span>Set schedules for holidays, game days & everyday use</span></li><li><div class="q-why-dot"></div><span>Clean, permanent install — no more hanging lights each year</span></li><li><div class="q-why-dot"></div><span>Fun effects and music sync options</span></li><li><div class="q-why-dot"></div><span>Much more affordable than premium lighting systems</span></li></ul><div id="q-photo-section" style="margin-bottom:1rem;"><div class="q-sec-title">See our work</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><img src="/images/IMG_8464.jpeg" style="width:100%;border-radius:8px;object-fit:cover;height:160px;" alt="Completed job"><img src="/images/IMG_8072.jpeg" style="width:100%;border-radius:8px;object-fit:cover;height:160px;" alt="Completed job"></div></div><div class="q-comp"><div class="q-comp-title">How we compare to competitors</div><div class="q-comp-sub" id="qr-comp-ft">Based on — ft installation</div><div class="q-comp-list" id="qr-comp-list"></div><div class="q-comp-div"></div><div class="q-hl-row"><div class="q-hl-label">Heartland Permanent Lighting</div><div class="q-hl-price" id="qr-hl-price">$0</div></div><div class="q-save-note" id="qr-save-note"></div></div></div></div><button id="q-submit-btn" style="width:100%;padding:12px;border-radius:10px;background:#085041;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;" onclick="qSubmit()">Submit quote to secretary</button><button class="q-resetbtn" onclick="qReset()">Generate another quote</button></div>`;
+}
+
+window.qCalc=function(){const ft=parseFloat(document.getElementById('qa-ft').value)||0;const ppf=parseFloat(document.getElementById('qa-ppf').value)||0;const disc=parseFloat(document.getElementById('qa-disc').value)||0;const orig=ft*ppf;const final=Math.max(0,orig-disc);document.getElementById('qc-orig').textContent=fmt(orig);document.getElementById('qc-final').textContent=fmt(final);document.getElementById('qc-disc').textContent=fmt(disc);};
+window.qGenerate=function(){const addr=document.getElementById('qa-addr').value.trim();const bld=document.getElementById('qa-bld').value.trim();const ft=parseFloat(document.getElementById('qa-ft').value)||0;const ppf=parseFloat(document.getElementById('qa-ppf').value)||0;const disc=parseFloat(document.getElementById('qa-disc').value)||0;if(!addr||!ft||!ppf){alert('Please fill in address, footage, and price per foot.');return;}const orig=ft*ppf;const final=Math.max(0,orig-disc);document.getElementById('qr-addr').textContent=addr;document.getElementById('qr-bld').textContent=bld||'Residential';document.getElementById('qr-ft').textContent=ft+' ft';const priceEl=document.getElementById('qr-price');priceEl.innerHTML=disc>0?`<span class="price-struck">${fmt(orig)}</span> → <span class="price-green">${fmt(final)}</span>`:`<span class="price-green">${fmt(final)}</span>`;document.getElementById('qr-comp-ft').textContent='Based on '+ft+' ft installation';document.getElementById('qr-hl-price').textContent=fmt(final);const comps=[{name:'Trimlight System',low:18,high:35},{name:'JellyFish Lighting',low:25,high:35},{name:'Astoria Lighting Co.',low:20,high:28},{name:'Leading Edge / Small installers',low:17,high:22}];document.getElementById('qr-comp-list').innerHTML=comps.map(c=>`<div class="q-comp-item"><div class="q-comp-name">${c.name}</div><div class="q-comp-price">${fmt(Math.round(c.low*ft))} – ${fmt(Math.round(c.high*ft))}</div></div>`).join('');const savings=Math.round(17*ft)-final;document.getElementById('qr-save-note').textContent=savings>0?'Save up to '+fmt(savings)+' compared to competitors':'Professional installation at an unbeatable price';document.getElementById('qform').style.display='none';document.getElementById('qdoc-wrap').style.display='block';};
+window.qReset=function(){document.getElementById('qform').style.display='block';document.getElementById('qdoc-wrap').style.display='none';};
+window.qSubmit=async function(){const addr=document.getElementById('qa-addr').value.trim();const bld=document.getElementById('qa-bld').value.trim();const ft=parseFloat(document.getElementById('qa-ft').value)||0;const ppf=parseFloat(document.getElementById('qa-ppf').value)||0;const disc=parseFloat(document.getElementById('qa-disc').value)||0;const final=Math.max(0,ft*ppf-disc);const btn=document.getElementById('q-submit-btn');await api('POST','/api/quotes',{address:addr,building:bld,footage:ft,price:ppf,discount:disc,finalPrice:final});btn.textContent='Submitted!';btn.style.background='#1D9E75';setTimeout(()=>{btn.textContent='Submit quote to secretary';btn.style.background='#085041';},3000);};
+
+// ─── EMPLOYEE APP ───
+async function renderEmployeeApp(){
+  const data=await api('GET','/api/my-stats');
+  setupTabs([{id:'my-dash',label:'My dashboard'},{id:'my-rank',label:'My ranking'},{id:'board',label:'Team board'},{id:'quote-tab',label:'Quote generator'}],'my-dash');
+  const goal=data.goal;const p=goal?pct(data.revenue,goal.target):0;const achieved=goal&&data.revenue>=goal.target;
+  document.getElementById('my-dash').innerHTML=`<div class="earned-hero"><div class="earned-label">Your total earned</div><div class="earned-amount">${fmt(data.earned)}</div><div class="earned-sub">${data.installs} install${data.installs!==1?'s':''} · ${data.rate}% commission rate</div></div><div class="metrics"><div class="metric"><div class="metric-label">Revenue generated</div><div class="metric-value">${fmt(data.revenue)}</div></div><div class="metric"><div class="metric-label">Installs completed</div><div class="metric-value">${data.installs}</div></div></div>${goal?`<div class="goal-card ${achieved?'achieved':''}"><div class="section-label">Your goal</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div><div style="font-size:15px;font-weight:500;">${goal.prize}</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">${achieved?'You did it!':'Keep going — you\'re '+p+'% there'}</div></div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved':p+'%'}</span></div><div class="prog-track"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:12px;color:var(--muted);"><span>Current: ${fmt(data.revenue)}</span><span>${achieved?'Goal unlocked!':'Need '+fmt(Math.max(0,goal.target-data.revenue))+' more'}</span><span>Target: ${fmt(goal.target)}</span></div></div>`:''}<div class="card" style="margin-top:1rem;"><div class="section-label">Job calendar</div><div id="emp-cal-inner"></div></div>${data.sales.length>0?`<div class="card"><div class="section-label">Recent sales</div><table class="sales-table"><tr><th>Date</th><th>Address</th><th>Amount</th><th>Earned</th></tr>${data.sales.map(s=>`<tr><td>${s.date}</td><td>${s.address||'—'}</td><td>${fmt(s.amount)}</td><td style="color:var(--green-dark);font-weight:500;">${fmt(s.amount*data.rate/100)}</td></tr>`).join('')}</table></div>`:''}`;
+  buildCalendar(data.sales||[],data.rate,'emp-cal-inner',false,null);
+
+  // Ranking tab
+  const rankRes=await api('GET','/api/my-rank');
+  const rank=rankRes.rank||0;const total=rankRes.total||0;
+  const rankPct=rank>0?Math.round(((total-rank)/(total-1||1))*100):0;
+  const isFirst=rank===1;const rankColor=isFirst?'#085041':rank<=3?'#1D9E75':'#888';
+  document.getElementById('my-rank').innerHTML=`<div class="card"><div class="section-label">Your team ranking</div><div style="text-align:center;padding:1.5rem 0;"><div style="font-size:13px;color:var(--muted);margin-bottom:8px;">You are ranked</div><div style="font-family:'DM Serif Display',serif;font-size:80px;line-height:1;color:${rankColor};">#${rank>0?rank:'—'}</div><div style="font-size:14px;color:var(--muted);margin-top:8px;">out of ${total} employees</div></div><div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px;"><span>Last place</span><span>1st place</span></div><div style="height:12px;background:var(--bg);border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;background:${rankColor};width:${rankPct}%;"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;"><div class="metric"><div class="metric-label">Your revenue</div><div class="metric-value">${fmt(data.revenue)}</div></div><div class="metric"><div class="metric-label">Your earned</div><div class="metric-value" style="color:var(--green-dark);">${fmt(data.earned)}</div></div></div><div style="background:${isFirst?'#EAF3DE':rank<=3?'#EAF3DE':'#FAEEDA'};border-radius:10px;padding:12px 14px;text-align:center;font-size:14px;font-weight:500;color:${isFirst?'#085041':rank<=3?'#085041':'#633806'};">${isFirst?'You are leading the team — keep it up!':rank<=3?'You are in the top 3 — push for #1!':'Keep closing deals to climb the ranks!'}</div></div>`;
+
+  document.getElementById('board').innerHTML=data.posts.length===0?'<div class="card" style="color:var(--muted);font-size:14px;">No posts yet.</div>':data.posts.map(p=>postHTML(p,false)).join('');
+  document.getElementById('quote-tab').innerHTML=quoteGeneratorHTML();
+}
+
+// ─── OWNER APP ───
+async function renderOwnerApp(){
+  setupTabs([{id:'overview',label:'Overview'},{id:'summary',label:'Summary'},{id:'team',label:'Team'},{id:'goals',label:'Goals'},{id:'quotes',label:'Quotes'},{id:'payments',label:'Pay tracker'},{id:'board-owner',label:'Team board'},{id:'log-sale',label:'Log sale'},{id:'manage',label:'Manage'},{id:'owner-quote',label:'Quote generator'}],'overview');
+  await refreshOwner();
+}
+
+async function refreshOwner(){
+  const[empData,goals,posts,allQuotes]=await Promise.all([api('GET','/api/employees'),api('GET','/api/goals'),api('GET','/api/posts'),api('GET','/api/quotes')]);
+  const salesRes=await fetch('/api/all-sales',{credentials:'include'});
+  const allSales=salesRes.ok?await salesRes.json():[];
+  renderOverview(empData,goals,allSales);
+  renderSummary(empData,allSales);
+  renderTeam(empData,goals);
+  renderOwnerGoals(empData,goals);
+  renderOwnerQuotes(empData,allQuotes);
+  renderPayTracker(empData,allSales);
+  renderOwnerBoard(posts);
+  renderLogSale(empData);
+  renderManage(empData);
+  document.getElementById('owner-quote').innerHTML=quoteGeneratorHTML();
+}
+
+function renderOverview(empData,goals,allSales){
+  const{employees,ownerSales}=empData;
+  const totalRev=employees.reduce((s,e)=>s+e.revenue,0)+ownerSales.revenue;
+  const totalComm=employees.reduce((s,e)=>s+e.earned,0);
+  const totalInst=employees.reduce((s,e)=>s+e.installs,0)+ownerSales.installs;
+  const ownerEarnings=ownerSales.revenue+employees.reduce((s,e)=>s+(e.revenue-e.earned),0);
+  document.getElementById('overview').innerHTML=`<div class="owner-hero"><div><div style="font-size:13px;color:var(--green);font-weight:500;">Your total earnings</div><div style="font-size:12px;color:var(--green);margin-top:2px;">your sales + share after paying commissions</div></div><div class="owner-hero-amount">${fmt(ownerEarnings)}</div></div><div class="metrics metric-3"><div class="metric"><div class="metric-label">Total revenue</div><div class="metric-value">${fmt(totalRev)}</div></div><div class="metric"><div class="metric-label">Paid in commissions</div><div class="metric-value">${fmt(totalComm)}</div></div><div class="metric"><div class="metric-label">Total installs</div><div class="metric-value">${totalInst}</div></div></div><div class="card"><div class="section-label">Breakdown</div>${[...employees].sort((a,b)=>b.revenue-a.revenue).map(e=>`<div class="emp-item"><div class="avatar" style="width:36px;height:36px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div class="emp-name">${e.name}</div><div class="emp-sub">${e.installs} installs · ${e.rate}%</div></div><div style="text-align:right;"><div class="emp-earned-amount">${fmt(e.earned)}</div><div class="emp-earned-rev">${fmt(e.revenue)} rev · ${fmt(e.revenue-e.earned)} your share</div></div></div>`).join('')}${ownerSales.revenue>0?`<div class="emp-item" style="background:rgba(234,243,222,0.4);border-radius:8px;padding:12px 8px;"><div class="avatar" style="width:36px;height:36px;font-size:11px;background:#EAF3DE;color:#27500A">ME</div><div style="flex:1;"><div class="emp-name" style="color:var(--green-dark)">You (owner)</div><div class="emp-sub">${ownerSales.installs} installs · 100%</div></div><div style="text-align:right;"><div class="emp-earned-amount">${fmt(ownerSales.revenue)}</div><div class="emp-earned-rev">100% kept</div></div></div>`:''}</div><div class="card"><div class="section-label">Team job calendar</div><div id="owner-cal-inner"></div></div>`;
+  buildCalendar(allSales,40,'owner-cal-inner',true,employees);
+}
+
+async function renderSummary(empData,allSales){
+  const summary=await api('GET','/api/summary');
+  const unpaidCount=summary.unpaidCount||0;const unpaidTotal=summary.unpaidTotal||0;
+  document.getElementById('summary').innerHTML=`${unpaidCount>0?`<div style="background:#FAEEDA;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;border-left:3px solid #BA7517;"><div><div style="font-size:13px;color:#633806;font-weight:500;">Commissions to pay out</div><div style="font-size:11px;color:#854F0B;margin-top:2px;">${unpaidCount} sale${unpaidCount!==1?'s':''} not yet marked paid</div></div><div style="font-size:18px;font-weight:600;color:#633806;">${fmt(unpaidTotal*0.4)}</div></div>`:`<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;margin-bottom:1rem;font-size:13px;color:#085041;font-weight:500;">All commissions paid up to date</div>`}<div class="metrics"><div class="metric"><div class="metric-label">Today's revenue</div><div class="metric-value">${fmt(summary.todayRev||0)}</div><div style="font-size:11px;color:var(--muted);margin-top:3px;">${summary.todaySales||0} sales today</div></div><div class="metric"><div class="metric-label">This week's revenue</div><div class="metric-value">${fmt(summary.weekRev||0)}</div><div style="font-size:11px;color:var(--muted);margin-top:3px;">${summary.weekSales||0} sales this week</div></div></div>${summary.topPerformer?`<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;border-left:3px solid #1D9E75;"><div><div style="font-size:13px;color:#085041;font-weight:500;">Top performer</div><div style="font-size:16px;font-weight:600;color:#085041;">${summary.topPerformer.name}</div></div><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(summary.topPerformer.revenue)}</div></div>`:''}`;
+}
+
+function renderTeam(empData,goals){
+  document.getElementById('team').innerHTML=[...empData.employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>{const goal=goals.find(g=>g.userId===e.id);const p=goal?pct(e.revenue,goal.target):0;const achieved=goal&&e.revenue>=goal.target;return`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;"><div style="font-size:12px;font-weight:600;color:var(--muted);width:20px;">#${i+1}</div><div class="avatar" style="width:40px;height:40px;font-size:12px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div style="font-size:15px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:var(--muted);">${e.installs} installs · ${e.rate}% rate</div></div></div><div style="background:var(--green-light);border-radius:10px;padding:1rem;text-align:center;margin-bottom:10px;"><div style="font-size:12px;color:var(--green);font-weight:500;margin-bottom:4px;">Total earned</div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--green-dark);">${fmt(e.earned)}</div><div style="font-size:12px;color:var(--green);margin-top:4px;">from ${fmt(e.revenue)} in revenue</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">${[['Your share',fmt(e.revenue-e.earned)],['Installs',e.installs]].map(([l,v])=>`<div class="metric"><div class="metric-label">${l}</div><div class="metric-value" style="font-size:18px;">${v}</div></div>`).join('')}</div>${goal?`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div style="font-size:13px;font-weight:500;">Goal: ${goal.prize}</div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved!':p+'%'}</span></div><div class="prog-track"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="font-size:11px;color:var(--muted);margin-top:4px;">${achieved?'Goal unlocked!':'Needs '+fmt(Math.max(0,goal.target-e.revenue))+' more'}</div></div>`:''}</div>`;}).join('');}
+
+function renderOwnerGoals(empData,goals){
+  const empOptions=empData.employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join('');
+  document.getElementById('goals').innerHTML=`<div class="card"><div class="section-label">Set a goal</div><div class="form-row cols4"><select id="g-emp">${empOptions}</select><input type="number" id="g-target" placeholder="Target $"><input type="text" id="g-prize" placeholder="Prize (e.g. $500 cash)"><button class="btn btn-green" onclick="addGoal()">+ Set</button></div></div>${goals.length===0?'<div style="font-size:14px;color:var(--muted);padding:.5rem 0;">No goals set yet.</div>':goals.map(g=>{const e=empData.employees.find(x=>x.id===g.userId);if(!e)return'';const p=pct(e.revenue,g.target);const achieved=e.revenue>=g.target;return`<div class="goal-card ${achieved?'achieved':''}"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar" style="width:32px;height:32px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved: ':'Prize: '}${g.prize}</span></div><div style="text-align:right;font-size:13px;font-weight:500;">${fmt(e.revenue)} / ${fmt(g.target)}</div><button class="del-btn" onclick="deleteGoal(${g.id})">×</button></div><div class="prog-track" style="height:10px;"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--muted);"><span>Current: ${fmt(e.revenue)}</span><span style="color:${achieved?'var(--green)':'var(--muted)'};">${achieved?'Unlocked!':'Need '+fmt(Math.max(0,g.target-e.revenue))+' more'}</span><span>Target: ${fmt(g.target)}</span></div></div>`;}).join('')}`;}
+
+function renderOwnerQuotes(empData,quotes){
+  const statusOpts=Object.entries(STATUS_COLORS).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
+  const quoteCard=q=>{const s=STATUS_COLORS[q.status]||STATUS_COLORS.new;return`<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;"><div><div style="font-size:15px;font-weight:600;">${q.address}</div><div style="font-size:12px;color:var(--muted);">${q.employeeName} · ${q.date} · ${q.footage}ft</div></div><div style="text-align:right;"><div style="font-size:18px;font-weight:600;color:var(--green-dark);">${fmt(q.finalPrice)}</div><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span></div></div><div class="form-row cols2"><select onchange="api('PATCH','/api/quotes/${q.id}',{status:this.value})" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);font-size:13px;font-family:'DM Sans',sans-serif;">${Object.entries(STATUS_COLORS).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}</select><button onclick="api('DELETE','/api/quotes/${q.id}').then(()=>refreshOwner())" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">Remove</button></div><textarea placeholder="Notes..." onchange="api('PATCH','/api/quotes/${q.id}',{notes:this.value})" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:55px;">${q.notes||''}</textarea></div>`;};
+  const newQ=quotes.filter(q=>q.status==='new');const otherQ=quotes.filter(q=>q.status!=='new');
+  document.getElementById('quotes').innerHTML=quotes.length===0?'<div style="font-size:14px;color:var(--muted);">No quotes submitted yet.</div>':`${newQ.length>0?`<div class="section-label">New (${newQ.length})</div>${newQ.map(quoteCard).join('')}`:''}${otherQ.length>0?`<div class="section-label" style="margin-top:12px;">In progress / completed</div>${otherQ.map(quoteCard).join('')}`:''}`;
+}
+
+function renderPayTracker(empData,allSales){
+  document.getElementById('payments').innerHTML=allSales.length===0?'<div style="font-size:14px;color:var(--muted);">No sales logged yet.</div>':`<div class="card">${allSales.map(s=>{const emp=empData.employees.find(e=>e.id===s.userId);if(!emp)return'';const comm=s.amount*(emp.rate/100);return`<div style="display:grid;grid-template-columns:1fr 70px 70px 90px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);${s.paid?'opacity:0.5':''}"><div><div style="font-size:13px;font-weight:500;">${emp.name}</div><div style="font-size:11px;color:var(--muted);">${s.address||s.date}</div></div><div style="font-size:13px;">${fmt(s.amount)}</div><div style="font-size:13px;color:var(--green-dark);font-weight:500;">${fmt(comm)}</div><button onclick="togglePaid(${s.id},${!s.paid})" style="padding:5px 10px;border-radius:6px;border:1px solid;font-size:11px;font-weight:500;cursor:pointer;background:${s.paid?'transparent':'#085041'};color:${s.paid?'#888':'#fff'};border-color:${s.paid?'rgba(0,0,0,0.12)':'#085041'};">${s.paid?'Paid':'Mark paid'}</button></div>`;}).join('')}</div>`;}
+
+function renderOwnerBoard(posts){
+  document.getElementById('board-owner').innerHTML=`<div class="card"><div class="section-label">Post to team</div><div class="type-toggle"><button class="type-btn active" id="tb-msg" onclick="setBoardType('msg')">Message</button><button class="type-btn quote-t" id="tb-quote" onclick="setBoardType('quote')">Weekly quote</button></div><div id="compose-msg"><textarea id="p-body" placeholder="Write a message to your team..."></textarea><div class="form-row cols3" style="margin-top:8px;"><input type="text" id="p-target" placeholder="To: All team"><label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer;"><input type="checkbox" id="p-pin" style="width:auto;"> Pin to top</label><button class="btn btn-green" onclick="postMessage()">Post</button></div></div><div id="compose-quote" class="hidden"><textarea id="q-body" placeholder="Paste your motivational quote here..."></textarea><div class="form-row cols3" style="margin-top:8px;"><input type="text" id="q-author" placeholder="— Author name"><div></div><button class="btn btn-green" onclick="postQuote()">Post quote</button></div></div></div><div id="posts-list">${posts.length===0?'<div style="font-size:14px;color:var(--muted);">No posts yet.</div>':[...posts].sort((a,b)=>(b.pin?1:0)-(a.pin?1:0)).map(p=>postHTML(p,true)).join('')}</div>`;}
+
+function renderLogSale(empData){
+  const empOptions=empData.employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join('');
+  document.getElementById('log-sale').innerHTML=`<div class="card"><div class="section-label">Log a new sale</div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Employee</label><select id="s-emp">${empOptions}</select></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Sale amount $</label><input type="number" id="s-amount" placeholder="e.g. 1400"></div></div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Address</label><input type="text" id="s-address" placeholder="123 Main St"></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Date</label><input type="date" id="s-date" value="${new Date().toISOString().split('T')[0]}"></div></div><button class="btn btn-green" onclick="logSale()">Log sale</button><div id="s-confirm" class="hidden" style="font-size:13px;color:var(--green);margin-top:8px;font-weight:500;">Sale logged!</div></div><div class="card"><div class="section-label">Your own sales</div><div class="form-row cols2"><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Your revenue $</label><input type="number" id="o-rev" placeholder="0" value="${empData.ownerSales.revenue}"></div><div><label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;">Your installs</label><input type="number" id="o-inst" placeholder="0" value="${empData.ownerSales.installs}"></div></div><button class="btn btn-green" onclick="saveOwnerSales()">Save</button></div>`;}
+
+function renderManage(empData){
+  document.getElementById('manage').innerHTML=`<div class="card"><div class="section-label">Add employee</div><div class="form-row cols2"><input type="text" id="m-name" placeholder="Full name"><input type="text" id="m-user" placeholder="Username"></div><div class="form-row cols2"><input type="password" id="m-pass" placeholder="Password"><input type="number" id="m-rate" placeholder="Commission % (e.g. 40)"></div><button class="btn btn-green" onclick="addEmployee()">+ Add employee</button><div id="m-confirm" class="hidden" style="font-size:13px;color:var(--green);margin-top:8px;font-weight:500;">Employee added!</div></div><div class="card"><div class="section-label">Update rates & passwords</div>${empData.employees.map(e=>`<div style="display:grid;grid-template-columns:1fr 90px 90px 90px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><div style="font-size:14px;">${e.name}</div><div style="display:flex;align-items:center;gap:4px;"><input type="number" value="${e.rate}" id="rate-${e.id}" style="width:55px;text-align:center;" min="1" max="100"><span style="font-size:12px;color:var(--muted);">%</span></div><button class="btn btn-sm" onclick="updateRate(${e.id})">Save rate</button><div style="display:flex;gap:4px;"><input type="password" placeholder="New pw" id="pw-${e.id}" style="width:80px;"><button class="btn btn-sm" onclick="updatePassword(${e.id})">Set</button></div></div>`).join('')}</div>`;}
+
+// ─── SECRETARY APP ───
+async function renderSecretaryApp(){
+  const[empData,goals,posts,quotes]=await Promise.all([api('GET','/api/employees'),api('GET','/api/goals'),api('GET','/api/posts'),api('GET','/api/quotes')]);
+  const salesRes=await fetch('/api/all-sales',{credentials:'include'});
+  const allSales=salesRes.ok?await salesRes.json():[];
+  const summary=await api('GET','/api/summary');
+  setupTabs([{id:'sec-overview',label:'Overview'},{id:'sec-summary',label:'Summary'},{id:'sec-team',label:'Team'},{id:'sec-goals',label:'Goals'},{id:'sec-quotes',label:'Quotes'},{id:'sec-payments',label:'Pay tracker'},{id:'sec-board',label:'Team board'}],'sec-overview');
+  const employees=empData.employees;
+  const totalRev=employees.reduce((s,e)=>s+e.revenue,0)+empData.ownerSales.revenue;
+  const totalComm=employees.reduce((s,e)=>s+e.earned,0);
+  const totalInst=employees.reduce((s,e)=>s+e.installs,0)+empData.ownerSales.installs;
+
+  document.getElementById('sec-overview').innerHTML=`<div style="background:var(--green-light);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:13px;color:var(--green);font-weight:500;">Total revenue</div><div style="font-size:12px;color:#3B6D11;margin-top:2px;">all employees</div></div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--green-dark);">${fmt(totalRev)}</div></div><div class="metrics metric-3"><div class="metric"><div class="metric-label">Commissions paid</div><div class="metric-value">${fmt(totalComm)}</div></div><div class="metric"><div class="metric-label">Total installs</div><div class="metric-value">${totalInst}</div></div><div class="metric"><div class="metric-label">Active quotes</div><div class="metric-value">${quotes.filter(q=>q.status!=='installed').length}</div></div></div><div class="card"><div class="section-label">All employees</div>${[...employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`<div class="emp-item"><div style="font-size:12px;font-weight:600;color:var(--muted);width:20px;">#${i+1}</div><div class="avatar" style="width:36px;height:36px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div class="emp-name">${e.name}</div><div class="emp-sub">${e.installs} installs · ${e.rate}%</div></div><div style="text-align:right;"><div class="emp-earned-amount">${fmt(e.earned)}</div><div class="emp-earned-rev">${fmt(e.revenue)} rev</div></div></div>`).join('')}</div><div class="card"><div class="section-label">Team job calendar</div><div id="sec-cal-inner"></div></div>`;
+  buildCalendar(allSales,40,'sec-cal-inner',true,employees);
+
+  const unpaidCount=summary.unpaidCount||0;
+  document.getElementById('sec-summary').innerHTML=`${unpaidCount>0?`<div style="background:#FAEEDA;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;border-left:3px solid #BA7517;"><div><div style="font-size:13px;color:#633806;font-weight:500;">Commissions to pay out</div><div style="font-size:11px;color:#854F0B;margin-top:2px;">${unpaidCount} sale${unpaidCount!==1?'s':''} not yet marked paid</div></div><div style="font-size:18px;font-weight:600;color:#633806;">${fmt((summary.unpaidTotal||0)*0.4)}</div></div>`:`<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;margin-bottom:1rem;font-size:13px;color:#085041;font-weight:500;">All commissions paid up to date</div>`}<div class="metrics"><div class="metric"><div class="metric-label">Today's revenue</div><div class="metric-value">${fmt(summary.todayRev||0)}</div><div style="font-size:11px;color:var(--muted);margin-top:3px;">${summary.todaySales||0} sales today</div></div><div class="metric"><div class="metric-label">This week's revenue</div><div class="metric-value">${fmt(summary.weekRev||0)}</div><div style="font-size:11px;color:var(--muted);margin-top:3px;">${summary.weekSales||0} sales this week</div></div></div>${summary.topPerformer?`<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;border-left:3px solid var(--green);"><div><div style="font-size:13px;color:#085041;font-weight:500;">Top performer</div><div style="font-size:16px;font-weight:600;color:#085041;">${summary.topPerformer.name}</div></div><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(summary.topPerformer.revenue)}</div></div>`:''}`;
+
+  document.getElementById('sec-team').innerHTML=[...employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;"><div style="font-size:12px;font-weight:600;color:var(--muted);width:20px;">#${i+1}</div><div class="avatar" style="width:40px;height:40px;font-size:12px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div style="font-size:15px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:var(--muted);">${e.installs} installs · ${e.rate}%</div></div></div><div style="background:var(--green-light);border-radius:10px;padding:1rem;text-align:center;"><div style="font-size:12px;color:var(--green);font-weight:500;margin-bottom:4px;">Total earned</div><div style="font-family:'DM Serif Display',serif;font-size:32px;color:var(--green-dark);">${fmt(e.earned)}</div><div style="font-size:12px;color:var(--green);margin-top:4px;">from ${fmt(e.revenue)} in revenue</div></div></div>`).join('');
+
+  document.getElementById('sec-goals').innerHTML=goals.length===0?'<div style="font-size:14px;color:var(--muted);">No goals set yet.</div>':goals.map(g=>{const e=employees.find(x=>x.id===g.userId);if(!e)return'';const p=pct(e.revenue,g.target);const achieved=e.revenue>=g.target;return`<div class="goal-card ${achieved?'achieved':''}"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar" style="width:32px;height:32px;font-size:11px;background:${e.color};color:${e.tc}">${ini(e.name)}</div><div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved: ':'Prize: '}${g.prize}</span></div><div style="font-size:13px;font-weight:500;">${fmt(e.revenue)} / ${fmt(g.target)}</div></div><div class="prog-track" style="height:10px;"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--muted);"><span>Current: ${fmt(e.revenue)}</span><span style="color:${achieved?'var(--green)':'var(--muted)'};">${achieved?'Unlocked!':'Need '+fmt(Math.max(0,g.target-e.revenue))+' more'}</span><span>Target: ${fmt(g.target)}</span></div></div>`;}).join('');
+
+  const quoteCard=q=>{const s=STATUS_COLORS[q.status]||STATUS_COLORS.new;return`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div><div style="font-size:15px;font-weight:600;">${q.address}</div><div style="font-size:12px;color:var(--muted);">${q.employeeName} · ${q.date} · ${q.footage}ft</div></div><div style="text-align:right;"><div style="font-size:18px;font-weight:600;color:var(--green-dark);">${fmt(q.finalPrice)}</div><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span></div></div><div class="form-row cols2"><select onchange="api('PATCH','/api/quotes/${q.id}',{status:this.value})" style="padding:7px 10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);font-size:13px;font-family:'DM Sans',sans-serif;">${Object.entries(STATUS_COLORS).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}</select><button onclick="api('DELETE','/api/quotes/${q.id}').then(()=>renderSecretaryApp())" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;">Remove</button></div><textarea placeholder="Notes..." onchange="api('PATCH','/api/quotes/${q.id}',{notes:this.value})" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:55px;">${q.notes||''}</textarea></div>`;};
+  const newQ=quotes.filter(q=>q.status==='new');const otherQ=quotes.filter(q=>q.status!=='new');
+  document.getElementById('sec-quotes').innerHTML=quotes.length===0?'<div style="font-size:14px;color:var(--muted);">No quotes submitted yet.</div>':`${newQ.length>0?`<div class="section-label">New (${newQ.length})</div>${newQ.map(quoteCard).join('')}`:''}${otherQ.length>0?`<div class="section-label" style="margin-top:12px;">In progress / completed</div>${otherQ.map(quoteCard).join('')}`:''}`;
+
+  document.getElementById('sec-payments').innerHTML=allSales.length===0?'<div style="font-size:14px;color:var(--muted);">No sales logged yet.</div>':`<div class="card">${allSales.map(s=>{const emp=employees.find(e=>e.id===s.userId);if(!emp)return'';const comm=s.amount*(emp.rate/100);return`<div style="display:grid;grid-template-columns:1fr 70px 70px 90px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);${s.paid?'opacity:0.5':''}"><div><div style="font-size:13px;font-weight:500;">${emp.name}</div><div style="font-size:11px;color:var(--muted);">${s.address||s.date}</div></div><div style="font-size:13px;">${fmt(s.amount)}</div><div style="font-size:13px;color:var(--green-dark);font-weight:500;">${fmt(comm)}</div><button onclick="secTogglePaid(${s.id},${!s.paid})" style="padding:5px 10px;border-radius:6px;border:1px solid;font-size:11px;font-weight:500;cursor:pointer;background:${s.paid?'transparent':'#085041'};color:${s.paid?'#888':'#fff'};border-color:${s.paid?'rgba(0,0,0,0.12)':'#085041'};">${s.paid?'Paid':'Mark paid'}</button></div>`;}).join('')}</div>`;
+
+  document.getElementById('sec-board').innerHTML=posts.length===0?'<div style="font-size:14px;color:var(--muted);">No posts yet.</div>':[...posts].sort((a,b)=>(b.pin?1:0)-(a.pin?1:0)).map(p=>postHTML(p,false)).join('');
+}
+
+// ─── ACTIONS ───
 function setBoardType(t){document.getElementById('compose-msg').classList.toggle('hidden',t!=='msg');document.getElementById('compose-quote').classList.toggle('hidden',t!=='quote');document.getElementById('tb-msg').classList.toggle('active',t==='msg');document.getElementById('tb-quote').classList.toggle('active',t==='quote');}
-async function postMessage(){const body=document.getElementById('p-body').value.trim();const target=document.getElementById('p-target').value.trim()||'All team';const pin=document.getElementById('p-pin').checked;if(!body)return;await api('POST','/api/posts',{type:'message',body,target,pin});document.getElementById('p-body').value='';document.getElementById('p-target').value='';document.getElementById('p-pin').checked=false;renderBoard(await api('GET','/api/posts'));}
-async function postQuote(){const body=document.getElementById('q-body').value.trim();const author=document.getElementById('q-author').value.trim()||'Unknown';if(!body)return;await api('POST','/api/posts',{type:'quote',body,author});document.getElementById('q-body').value='';document.getElementById('q-author').value='';renderBoard(await api('GET','/api/posts'));}
-async function deletePost(id){await api('DELETE',`/api/posts/${id}`);renderBoard(await api('GET','/api/posts'));}
+async function postMessage(){const body=document.getElementById('p-body').value.trim();const target=document.getElementById('p-target').value.trim()||'All team';const pin=document.getElementById('p-pin').checked;if(!body)return;await api('POST','/api/posts',{type:'message',body,target,pin});await refreshOwner();}
+async function postQuote(){const body=document.getElementById('q-body').value.trim();const author=document.getElementById('q-author').value.trim()||'Unknown';if(!body)return;await api('POST','/api/posts',{type:'quote',body,author});await refreshOwner();}
+async function deletePost(id){await api('DELETE',`/api/posts/${id}`);await refreshOwner();}
 async function addGoal(){const userId=document.getElementById('g-emp').value;const target=document.getElementById('g-target').value;const prize=document.getElementById('g-prize').value.trim();if(!target||!prize)return;await api('POST','/api/goals',{userId,target,prize});document.getElementById('g-target').value='';document.getElementById('g-prize').value='';await refreshOwner();}
 async function deleteGoal(id){await api('DELETE',`/api/goals/${id}`);await refreshOwner();}
 async function logSale(){const userId=document.getElementById('s-emp').value;const amount=document.getElementById('s-amount').value;const address=document.getElementById('s-address').value;const date=document.getElementById('s-date').value;if(!amount)return;await api('POST','/api/sales',{userId,amount,address,date});document.getElementById('s-amount').value='';document.getElementById('s-address').value='';const c=document.getElementById('s-confirm');c.classList.remove('hidden');setTimeout(()=>c.classList.add('hidden'),3000);await refreshOwner();}
-async function logSaleSecretary(){const userId=document.getElementById('ss-emp').value;const amount=document.getElementById('ss-amount').value;const address=document.getElementById('ss-address').value;const date=document.getElementById('ss-date').value;if(!amount)return;await api('POST','/api/sales',{userId,amount,address,date});document.getElementById('ss-amount').value='';document.getElementById('ss-address').value='';const c=document.getElementById('ss-confirm');c.classList.remove('hidden');setTimeout(()=>c.classList.add('hidden'),3000);}
 async function saveOwnerSales(){await api('POST','/api/owner-sales',{revenue:document.getElementById('o-rev').value,installs:document.getElementById('o-inst').value});await refreshOwner();}
 async function addEmployee(){const name=document.getElementById('m-name').value.trim();const username=document.getElementById('m-user').value.trim();const password=document.getElementById('m-pass').value.trim();const rate=document.getElementById('m-rate').value;if(!name||!username||!password)return;await api('POST','/api/employees',{name,username,password,rate});document.getElementById('m-name').value='';document.getElementById('m-user').value='';document.getElementById('m-pass').value='';document.getElementById('m-rate').value='';const c=document.getElementById('m-confirm');c.classList.remove('hidden');setTimeout(()=>c.classList.add('hidden'),3000);await refreshOwner();}
 async function updateRate(id){await api('PATCH',`/api/employees/${id}`,{rate:document.getElementById(`rate-${id}`).value});await refreshOwner();}
 async function updatePassword(id){const pw=document.getElementById(`pw-${id}`).value;if(!pw)return;await api('PATCH',`/api/employees/${id}`,{password:pw});document.getElementById(`pw-${id}`).value='';alert('Password updated!');}
+async function togglePaid(id,paid){await api('PATCH',`/api/sales/${id}/paid`,{paid});await refreshOwner();}
+async function secTogglePaid(id,paid){await api('PATCH',`/api/sales/${id}/paid`,{paid});await renderSecretaryApp();}
 (async()=>{try{const me=await api('GET','/api/me');if(me&&me.role){currentUser=me;showApp();}}catch{}})();
 </script>
 </body>
 </html>
-<script>
-(function(){
-const _setupTabs = window.setupTabs;
-const _renderEmployeeApp = window.renderEmployeeApp;
-const _renderOwnerApp = window.renderOwnerApp;
-
-function quoteTabHTML(){
-  return `
-  <style>
-  .q-wrap{padding:.5rem 0;}
-  .q-card{background:var(--card,#fff);border-radius:14px;border:1px solid var(--border,rgba(0,0,0,0.08));padding:1.25rem;margin-bottom:1rem;}
-  .q-label{font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;}
-  .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-  .q-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;}
-  .q-field label{display:block;font-size:12px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;}
-  .q-field input{width:100%;padding:9px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:var(--bg,#F8F7F4);color:var(--text,#1a1a1a);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;}
-  .q-field input:focus{border-color:#1D9E75;}
-  .q-calc{background:var(--bg,#F8F7F4);border-radius:8px;padding:10px 14px;margin-bottom:12px;display:flex;gap:20px;flex-wrap:wrap;}
-  .q-calc span{font-size:12px;color:var(--muted,#888);}
-  .q-calc b{color:var(--text,#1a1a1a);}
-  .q-calc b.green{color:#1D9E75;}
-  .q-calc b.gold{color:#BA7517;}
-  .q-genbtn{width:100%;padding:12px;border-radius:10px;background:#085041;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
-  .q-genbtn:hover{background:#1D9E75;}
-  .q-doc{background:#fff;color:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,0.1);}
-  .q-doc-header{background:#0a0a0a;padding:1.5rem;text-align:center;}
-  .q-doc-titlebar{background:#1D9E75;padding:8px;text-align:center;font-family:'Georgia',serif;font-size:16px;color:#fff;letter-spacing:.04em;}
-  .q-doc-body{padding:1.25rem 1.5rem;}
-  .q-info-grid{border:1.5px solid #1a1a1a;border-radius:8px;overflow:hidden;margin-bottom:1rem;}
-  .q-info-row{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid #e0e0e0;font-size:13px;}
-  .q-info-row:last-child{border-bottom:none;}
-  .q-info-key{padding:9px 12px;font-weight:600;background:#f5f5f5;border-right:1px solid #e0e0e0;}
-  .q-info-val{padding:9px 12px;}
-  .q-sec-title{font-family:'Georgia',serif;font-size:15px;margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid #1D9E75;color:#1a1a1a;}
-  .q-includes{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:1rem;}
-  .q-inc{display:flex;align-items:center;gap:7px;font-size:12px;color:#1a1a1a;}
-  .q-dot{width:14px;height:14px;background:#1D9E75;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:8px;color:#fff;font-weight:700;}
-  .q-why{list-style:none;margin-bottom:1rem;}
-  .q-why li{font-size:12px;color:#1a1a1a;padding:4px 0;display:flex;gap:7px;align-items:flex-start;}
-  .q-why-dot{width:5px;height:5px;background:#1D9E75;border-radius:50%;margin-top:5px;flex-shrink:0;}
-  .q-comp{background:#0a0a0a;border-radius:10px;padding:1.25rem;margin-bottom:1rem;}
-  .q-comp-title{font-family:'Georgia',serif;color:#fff;font-size:14px;margin-bottom:4px;text-align:center;}
-  .q-comp-sub{font-size:10px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;}
-  .q-comp-list{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}
-  .q-comp-item{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,0.05);border-radius:6px;}
-  .q-comp-name{font-size:11px;color:rgba(255,255,255,0.7);}
-  .q-comp-price{font-size:12px;font-weight:600;color:#EF9F27;}
-  .q-comp-div{height:1px;background:rgba(255,255,255,0.1);margin:8px 0;}
-  .q-hl-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#1D9E75;border-radius:6px;}
-  .q-hl-label{font-size:12px;color:#fff;font-weight:600;}
-  .q-hl-price{font-size:16px;font-weight:700;color:#fff;}
-  .q-save-note{text-align:center;font-size:10px;color:rgba(255,255,255,0.6);margin-top:8px;}
-  .q-footer{font-size:11px;color:#666;font-style:italic;line-height:1.6;padding:10px;background:#f9f9f9;border-radius:8px;border-left:3px solid #1D9E75;margin-bottom:1rem;}
-  .q-note{font-size:11px;color:#444;margin-bottom:.5rem;}
-  .q-resetbtn{width:100%;padding:9px;border-radius:8px;background:transparent;color:var(--muted,#888);border:1px solid rgba(0,0,0,0.12);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;}
-  .price-struck{color:#999;text-decoration:line-through;margin-right:5px;font-size:12px;}
-  .price-green{color:#085041;font-weight:700;font-size:15px;}
-  </style>
-  <div class="q-wrap">
-    <div class="q-card" id="qform">
-      <div class="q-label">Generate customer quote</div>
-      <div class="q-grid">
-        <div class="q-field"><label>Customer address</label><input type="text" id="qa-addr" placeholder="123 Main St, Aberdeen SD"></div>
-        <div class="q-field"><label>Building type</label><input type="text" id="qa-bld" placeholder="Front house, wrapped around garage"></div>
-      </div>
-      <div class="q-grid3">
-        <div class="q-field"><label>Footage (ft)</label><input type="number" id="qa-ft" placeholder="170" oninput="qCalc()"></div>
-        <div class="q-field"><label>Price per foot ($)</label><input type="number" id="qa-ppf" placeholder="15" oninput="qCalc()"></div>
-        <div class="q-field"><label>Discount ($)</label><input type="number" id="qa-disc" placeholder="0" oninput="qCalc()"></div>
-      </div>
-      <div class="q-calc">
-        <span>Original: <b id="qc-orig">$0</b></span>
-        <span>Final: <b class="green" id="qc-final">$0</b></span>
-        <span>Discount: <b class="gold" id="qc-disc">$0</b></span>
-      </div>
-      <button class="q-genbtn" onclick="qGenerate()">Generate quote</button>
-    </div>
-    <div id="qdoc-wrap" style="display:none;">
-      <div class="q-doc" id="qdoc">
-        <div class="q-doc-header">
-          <svg width="190" height="75" viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
-            <line x1="40" y1="80" x2="200" y2="20" stroke="white" stroke-width="4" stroke-linecap="round"/>
-            <line x1="200" y1="20" x2="360" y2="80" stroke="white" stroke-width="4" stroke-linecap="round"/>
-            <line x1="30" y1="80" x2="370" y2="80" stroke="white" stroke-width="3"/>
-            <rect x="155" y="50" width="14" height="14" fill="none" stroke="white" stroke-width="2.5"/>
-            <rect x="175" y="50" width="14" height="14" fill="none" stroke="white" stroke-width="2.5"/>
-            <rect x="155" y="64" width="14" height="6" fill="none" stroke="white" stroke-width="2.5"/>
-            <rect x="175" y="64" width="14" height="6" fill="none" stroke="white" stroke-width="2.5"/>
-            <rect x="88" y="20" width="8" height="30" fill="white"/>
-            <rect x="84" y="16" width="16" height="6" fill="white"/>
-            <circle cx="105" cy="74" r="4" fill="#EF9F27"/>
-            <circle cx="125" cy="66" r="4" fill="#EF9F27"/>
-            <circle cx="147" cy="59" r="4" fill="#EF9F27"/>
-            <circle cx="170" cy="54" r="4" fill="#EF9F27"/>
-            <circle cx="195" cy="51" r="4" fill="#EF9F27"/>
-            <circle cx="220" cy="54" r="4" fill="#EF9F27"/>
-            <circle cx="243" cy="59" r="4" fill="#EF9F27"/>
-            <circle cx="265" cy="66" r="4" fill="#EF9F27"/>
-            <circle cx="285" cy="74" r="4" fill="#EF9F27"/>
-            <text x="200" y="110" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="28" fill="white" letter-spacing="4">HEARTLAND</text>
-            <text x="200" y="130" text-anchor="middle" font-family="Arial,sans-serif" font-weight="400" font-size="11" fill="rgba(255,255,255,0.7)" letter-spacing="6">PERMANENT LIGHTING</text>
-          </svg>
-        </div>
-        <div class="q-doc-titlebar">Custom Installation Quote</div>
-        <div class="q-doc-body">
-          <div class="q-info-grid">
-            <div class="q-info-row"><div class="q-info-key">Address</div><div class="q-info-val" id="qr-addr">—</div></div>
-            <div class="q-info-row"><div class="q-info-key">Building type</div><div class="q-info-val" id="qr-bld">—</div></div>
-            <div class="q-info-row"><div class="q-info-key">Footage</div><div class="q-info-val" id="qr-ft">—</div></div>
-            <div class="q-info-row"><div class="q-info-key">Price</div><div class="q-info-val" id="qr-price">—</div></div>
-          </div>
-          <div class="q-note">* Price includes materials and labor</div>
-          <div class="q-note" style="margin-bottom:1rem;">* Can choose white or black soffits for lights</div>
-          <div class="q-sec-title">What's included</div>
-          <div class="q-includes" style="margin-bottom:1rem;">
-            <div class="q-inc"><div class="q-dot">✓</div><span>Custom measurement & layout</span></div>
-            <div class="q-inc"><div class="q-dot">✓</div><span>Professional installation</span></div>
-            <div class="q-inc"><div class="q-dot">✓</div><span>Secure outdoor mounting</span></div>
-            <div class="q-inc"><div class="q-dot">✓</div><span>App setup & walkthrough</span></div>
-          </div>
-          <div class="q-sec-title">Why homeowners love it</div>
-          <ul class="q-why">
-            <li><div class="q-why-dot"></div><span>Full color control from your phone — change colors anytime</span></li>
-            <li><div class="q-why-dot"></div><span>Set schedules for holidays, game days & everyday use</span></li>
-            <li><div class="q-why-dot"></div><span>Clean, permanent install — no more hanging lights each year</span></li>
-            <li><div class="q-why-dot"></div><span>Fun effects and music sync options</span></li>
-            <li><div class="q-why-dot"></div><span>Much more affordable than premium lighting systems</span></li>
-          </ul>
-          <div class="q-comp">
-            <div class="q-comp-title">How we compare to competitors</div>
-            <div class="q-comp-sub" id="qr-comp-ft">Based on — ft installation</div>
-            <div class="q-comp-list" id="qr-comp-list"></div>
-            <div class="q-comp-div"></div>
-            <div class="q-hl-row">
-              <div class="q-hl-label">Heartland Permanent Lighting</div>
-              <div class="q-hl-price" id="qr-hl-price">$0</div>
-            </div>
-            <div class="q-save-note" id="qr-save-note"></div>
-          </div>
-          
-        </div>
-      </div>
-      <button class="q-resetbtn" onclick="qReset()">Generate another quote</button>
-    </div>
-  </div>`;
-}
-
-window.qCalc = function(){
-  const ft=parseFloat(document.getElementById('qa-ft').value)||0;
-  const ppf=parseFloat(document.getElementById('qa-ppf').value)||0;
-  const disc=parseFloat(document.getElementById('qa-disc').value)||0;
-  const orig=ft*ppf;
-  const final=Math.max(0,orig-disc);
-  document.getElementById('qc-orig').textContent='$'+Math.round(orig).toLocaleString();
-  document.getElementById('qc-final').textContent='$'+Math.round(final).toLocaleString();
-  document.getElementById('qc-disc').textContent='$'+Math.round(disc).toLocaleString();
-};
-
-window.qGenerate = function(){
-  const addr=document.getElementById('qa-addr').value.trim();
-  const bld=document.getElementById('qa-bld').value.trim();
-  const ft=parseFloat(document.getElementById('qa-ft').value)||0;
-  const ppf=parseFloat(document.getElementById('qa-ppf').value)||0;
-  const disc=parseFloat(document.getElementById('qa-disc').value)||0;
-  if(!addr||!ft||!ppf){alert('Please fill in address, footage, and price per foot.');return;}
-  const orig=ft*ppf;
-  const final=Math.max(0,orig-disc);
-  const fmt=n=>'$'+Math.round(n).toLocaleString();
-  document.getElementById('qr-addr').textContent=addr;
-  document.getElementById('qr-bld').textContent=bld||'Residential';
-  document.getElementById('qr-ft').textContent=ft+' ft';
-  const priceEl=document.getElementById('qr-price');
-  priceEl.innerHTML=disc>0?`<span class="price-struck">${fmt(orig)}</span> → <span class="price-green">${fmt(final)}</span>`:`<span class="price-green">${fmt(final)}</span>`;
-  document.getElementById('qr-comp-ft').textContent='Based on '+ft+' ft installation';
-  document.getElementById('qr-hl-price').textContent=fmt(final);
-  const comps=[
-    {name:'Trimlight System',low:18,high:35},
-    {name:'JellyFish Lighting',low:25,high:35},
-    {name:'Astoria Lighting Co.',low:20,high:28},
-    {name:'Leading Edge / Small installers',low:17,high:22},
-  ];
-  document.getElementById('qr-comp-list').innerHTML=comps.map(c=>`<div class="q-comp-item"><div class="q-comp-name">${c.name}</div><div class="q-comp-price">${fmt(Math.round(c.low*ft))} – ${fmt(Math.round(c.high*ft))}</div></div>`).join('');
-  const savings=Math.round(17*ft)-final;
-  document.getElementById('qr-save-note').textContent=savings>0?'Save up to '+fmt(savings)+' compared to competitors':'Professional installation at an unbeatable price';
-  document.getElementById('qform').style.display='none';
-  document.getElementById('qdoc-wrap').style.display='block';
-};
-
-window.qReset = function(){
-  document.getElementById('qform').style.display='block';
-  document.getElementById('qdoc-wrap').style.display='none';
-};
-
-const _origEmployee = window.renderEmployeeApp;
-window.renderEmployeeApp = async function(){
-  await _origEmployee();
-  const wrap=document.getElementById('tabs-wrap');
-  const content=document.getElementById('content');
-  const newTab=document.createElement('button');
-  newTab.className='tab-btn';
-  newTab.textContent='Quote generator';
-  newTab.onclick=function(){switchTab('quote-tab',this);};
-  wrap.appendChild(newTab);
-  const newView=document.createElement('div');
-  newView.className='view';
-  newView.id='quote-tab';
-  newView.innerHTML=quoteTabHTML();
-  content.appendChild(newView);
-};
-
-const _origOwner = window.renderOwnerApp;
-window.renderOwnerApp = async function(){
-  await _origOwner();
-  const wrap=document.getElementById('tabs-wrap');
-  const content=document.getElementById('content');
-  const newTab=document.createElement('button');
-  newTab.className='tab-btn';
-  newTab.textContent='Quote generator';
-  newTab.onclick=function(){switchTab('owner-quote-tab',this);};
-  wrap.appendChild(newTab);
-  const newView=document.createElement('div');
-  newView.className='view';
-  newView.id='owner-quote-tab';
-  newView.innerHTML=quoteTabHTML();
-  content.appendChild(newView);
-};
-})();
-</script>
-<script>
-(function(){
-const _qGen = window.qGenerate;
-window.qGenerate = function(){
-  _qGen();
-  const docBody = document.querySelector('.q-doc-body');
-  if(!docBody || document.getElementById('q-photo-section')) return;
-  const photoSection = document.createElement('div');
-  photoSection.id = 'q-photo-section';
-  photoSection.style.cssText = 'margin-bottom:1rem;';
-  photoSection.innerHTML = `
-    <div style="font-family:Georgia,serif;font-size:15px;margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid #1D9E75;color:#1a1a1a;">See our work</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-      <img src="/images/IMG_8464.jpeg" style="width:100%;border-radius:8px;object-fit:cover;height:160px;" alt="Completed job">
-      <img src="/images/IMG_8072.jpeg" style="width:100%;border-radius:8px;object-fit:cover;height:160px;" alt="Completed job">
-    </div>
-  `;
-  const compSection = docBody.querySelector('.q-comp');
-  if(compSection) docBody.insertBefore(photoSection, compSection);
-  else docBody.appendChild(photoSection);
-};
-})();
-</script>
-<script>
-(function(){
-
-const _refreshOwner = window.refreshOwner;
-window.refreshOwner = async function(){
-  await _refreshOwner();
-  await renderSummary();
-  await renderPayments();
-};
-
-window.renderSummary = async function(){
-  const el = document.getElementById('summary');
-  if(!el) return;
-  const s = await api('GET', '/api/summary');
-  const fmt = n => '$' + Math.round(n).toLocaleString();
-  el.innerHTML = `
-    <style>
-    .sum-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1rem;}
-    .sum-card{background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;}
-    .sum-label{font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;}
-    .sum-value{font-size:22px;font-weight:600;color:var(--text,#1a1a1a);}
-    .sum-sub{font-size:11px;color:var(--muted,#888);margin-top:3px;}
-    .unpaid-banner{background:#FAEEDA;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;border-left:3px solid #BA7517;}
-    .unpaid-label{font-size:13px;color:#633806;font-weight:500;}
-    .unpaid-amount{font-size:18px;font-weight:600;color:#633806;}
-    .top-card{background:#EAF3DE;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;border-left:3px solid #1D9E75;}
-    .top-label{font-size:13px;color:#085041;font-weight:500;}
-    .top-name{font-size:16px;font-weight:600;color:#085041;}
-    </style>
-    ${s.unpaidCount > 0 ? `
-    <div class="unpaid-banner">
-      <div><div class="unpaid-label">Commissions to pay out</div><div style="font-size:11px;color:#854F0B;margin-top:2px;">${s.unpaidCount} sale${s.unpaidCount!==1?'s':''} not yet marked paid</div></div>
-      <div class="unpaid-amount">${fmt(s.unpaidTotal * 0.4)}</div>
-    </div>` : `<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;margin-bottom:1rem;font-size:13px;color:#085041;font-weight:500;">All commissions paid up to date</div>`}
-    <div class="sum-grid">
-      <div class="sum-card"><div class="sum-label">Today's revenue</div><div class="sum-value">${fmt(s.todayRev)}</div><div class="sum-sub">${s.todaySales} sale${s.todaySales!==1?'s':''} today</div></div>
-      <div class="sum-card"><div class="sum-label">This week's revenue</div><div class="sum-value">${fmt(s.weekRev)}</div><div class="sum-sub">${s.weekSales} sale${s.weekSales!==1?'s':''} this week</div></div>
-    </div>
-    ${s.topPerformer ? `
-    <div class="top-card">
-      <div><div class="top-label">Top performer</div><div class="top-name">${s.topPerformer.name}</div></div>
-      <div style="text-align:right;"><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(s.topPerformer.revenue)}</div><div style="font-size:11px;color:#3B6D11;">total revenue</div></div>
-    </div>` : ''}
-  `;
-};
-
-window.renderPayments = async function(){
-  const el = document.getElementById('payments');
-  if(!el) return;
-  const empData = await api('GET', '/api/employees');
-  const fmt = n => '$' + Math.round(n).toLocaleString();
-  const allSales = [];
-  empData.employees.forEach(e => {
-    const mySales = JSON.parse(localStorage.getItem('sales_'+e.id)||'[]');
-  });
-  const data = await api('GET', '/api/employees');
-  const salesRes = await fetch('/api/all-sales', {credentials:'include'});
-  let sales = [];
-  if(salesRes.ok) sales = await salesRes.json();
-  if(!sales.length){
-    el.innerHTML='<div style="font-size:14px;color:var(--muted,#888);">No sales logged yet.</div>';
-    return;
-  }
-  el.innerHTML = `
-    <style>
-    .pay-row{display:grid;grid-template-columns:1fr 80px 80px 90px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border,rgba(0,0,0,0.08));font-size:13px;}
-    .pay-row.paid-row{opacity:0.5;}
-    .pay-name{font-weight:500;color:var(--text,#1a1a1a);}
-    .pay-addr{font-size:11px;color:var(--muted,#888);}
-    .paid-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;}
-    .paid-yes{background:#EAF3DE;color:#085041;}
-    .paid-no{background:#FAEEDA;color:#633806;}
-    .pay-btn{padding:5px 10px;border-radius:6px;border:1px solid;font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
-    .pay-btn-mark{background:#085041;color:#fff;border-color:#085041;}
-    .pay-btn-unmark{background:transparent;color:var(--muted,#888);border-color:rgba(0,0,0,0.12);}
-    </style>
-    <div class="pay-row" style="border-bottom:1px solid rgba(0,0,0,0.15);">
-      <div style="font-size:11px;font-weight:600;color:var(--muted,#888);text-transform:uppercase;letter-spacing:.05em;">Employee / Address</div>
-      <div style="font-size:11px;font-weight:600;color:var(--muted,#888);text-transform:uppercase;">Amount</div>
-      <div style="font-size:11px;font-weight:600;color:var(--muted,#888);text-transform:uppercase;">Commission</div>
-      <div style="font-size:11px;font-weight:600;color:var(--muted,#888);text-transform:uppercase;">Status</div>
-    </div>
-    ${sales.map(s => {
-      const emp = data.employees.find(e => e.id === s.userId);
-      if(!emp) return '';
-      const comm = s.amount * (emp.rate/100);
-      return `<div class="pay-row ${s.paid?'paid-row':''}">
-        <div><div class="pay-name">${emp.name}</div><div class="pay-addr">${s.address||s.date}</div></div>
-        <div>${fmt(s.amount)}</div>
-        <div style="color:#085041;font-weight:500;">${fmt(comm)}</div>
-        <div><button class="pay-btn ${s.paid?'pay-btn-unmark':'pay-btn-mark'}" onclick="togglePaid(${s.id},${!s.paid})">${s.paid?'Paid':'Mark paid'}</button></div>
-      </div>`;
-    }).join('')}
-  `;
-};
-
-window.togglePaid = async function(id, paid){
-  await api('PATCH', '/api/sales/'+id+'/paid', {paid});
-  await renderPayments();
-  await renderSummary();
-};
-
-const _renderOwnerApp = window.renderOwnerApp;
-window.renderOwnerApp = async function(){
-  const tabs = [
-    {id:'overview',label:'Overview'},
-    {id:'summary',label:'Summary'},
-    {id:'team',label:'Team'},
-    {id:'goals',label:'Goals'},
-    {id:'payments',label:'Pay tracker'},
-    {id:'board-owner',label:'Team board'},
-    {id:'log-sale',label:'Log sale'},
-    {id:'manage',label:'Manage'},
-  ];
-  setupTabs(tabs,'overview');
-  await refreshOwner();
-};
-
-})();
-</script>
-<script>
-(function(){
-
-// Add submit button to quote generator
-const _qGenerate = window.qGenerate;
-window.qGenerate = function(){
-  _qGenerate();
-  const docWrap = document.getElementById('qdoc-wrap');
-  if(!docWrap || document.getElementById('q-submit-btn')) return;
-  const btn = document.createElement('button');
-  btn.id = 'q-submit-btn';
-  btn.style.cssText = 'width:100%;padding:12px;border-radius:10px;background:#085041;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif;margin-top:8px;';
-  btn.textContent = 'Submit quote to secretary';
-  btn.onclick = async function(){
-    const addr = document.getElementById('qa-addr').value.trim();
-    const bld = document.getElementById('qa-bld').value.trim();
-    const ft = parseFloat(document.getElementById('qa-ft').value)||0;
-    const ppf = parseFloat(document.getElementById('qa-ppf').value)||0;
-    const disc = parseFloat(document.getElementById('qa-disc').value)||0;
-    const final = Math.max(0, ft*ppf - disc);
-    await api('POST', '/api/quotes', {address:addr, building:bld, footage:ft, price:ppf, discount:disc, finalPrice:final});
-    btn.textContent = 'Submitted!';
-    btn.style.background = '#1D9E75';
-    setTimeout(() => { btn.textContent = 'Submit quote to secretary'; btn.style.background = '#085041'; }, 3000);
-  };
-  docWrap.insertBefore(btn, docWrap.firstChild);
-};
-
-// Secretary quotes tab
-const _renderSecretaryApp = window.renderSecretaryApp;
-window.renderSecretaryApp = async function(){
-  await _renderSecretaryApp();
-  const wrap = document.getElementById('tabs-wrap');
-  const content = document.getElementById('content');
-  const newTab = document.createElement('button');
-  newTab.className = 'tab-btn';
-  newTab.textContent = 'Quotes';
-  newTab.onclick = function(){ switchTab('sec-quotes', this); loadSecQuotes(); };
-  wrap.appendChild(newTab);
-  const newView = document.createElement('div');
-  newView.className = 'view';
-  newView.id = 'sec-quotes';
-  newView.innerHTML = '<div style="font-size:14px;color:var(--muted,#888);padding:1rem 0;">Loading quotes...</div>';
-  content.appendChild(newView);
-};
-
-// Owner quotes tab
-const _renderOwnerApp = window.renderOwnerApp;
-window.renderOwnerApp = async function(){
-  await _renderOwnerApp();
-  const wrap = document.getElementById('tabs-wrap');
-  const content = document.getElementById('content');
-  const newTab = document.createElement('button');
-  newTab.className = 'tab-btn';
-  newTab.textContent = 'Quotes';
-  newTab.onclick = function(){ switchTab('owner-quotes', this); loadOwnerQuotes(); };
-  wrap.appendChild(newTab);
-  const newView = document.createElement('div');
-  newView.className = 'view';
-  newView.id = 'owner-quotes';
-  newView.innerHTML = '<div style="font-size:14px;color:var(--muted,#888);padding:1rem 0;">Loading quotes...</div>';
-  content.appendChild(newView);
-};
-
-const statusColors = {
-  new: {bg:'#FAEEDA', color:'#633806', label:'New'},
-  ordered: {bg:'#E6F1FB', color:'#0C447C', label:'Lights ordered'},
-  scheduled: {bg:'#EEEDFE', color:'#3C3489', label:'Scheduled'},
-  installed: {bg:'#EAF3DE', color:'#085041', label:'Installed'},
-};
-
-function quoteCard(q, canEdit){
-  const fmt = n => '$'+Math.round(n).toLocaleString();
-  const s = statusColors[q.status] || statusColors.new;
-  return `
-    <div style="background:var(--card,#fff);border:1px solid var(--border,rgba(0,0,0,0.08));border-radius:14px;padding:1.25rem;margin-bottom:10px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-        <div>
-          <div style="font-size:15px;font-weight:600;color:var(--text,#1a1a1a);">${q.address}</div>
-          <div style="font-size:12px;color:var(--muted,#888);margin-top:2px;">${q.employeeName} · ${q.date} · ${q.footage}ft</div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:18px;font-weight:600;color:#085041;">${fmt(q.finalPrice)}</div>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span>
-        </div>
-      </div>
-      ${canEdit ? `
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-        <select onchange="updateQuoteStatus(${q.id},this.value)" style="padding:7px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:var(--bg,#F8F7F4);color:var(--text,#1a1a1a);font-size:13px;font-family:'DM Sans',sans-serif;">
-          ${Object.entries(statusColors).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}
-        </select>
-        <button onclick="deleteQuote(${q.id})" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">Remove</button>
-      </div>
-      <textarea placeholder="Notes (soffit color, special instructions...)" onchange="updateQuoteNotes(${q.id},this.value)" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:var(--bg,#F8F7F4);color:var(--text,#1a1a1a);font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:60px;">${q.notes||''}</textarea>
-      ` : `${q.notes ? `<div style="font-size:12px;color:var(--muted,#888);font-style:italic;">${q.notes}</div>` : ''}`}
-    </div>`;
-}
-
-window.loadSecQuotes = async function(){
-  const el = document.getElementById('sec-quotes');
-  if(!el) return;
-  const quotes = await api('GET', '/api/quotes');
-  if(!quotes.length){ el.innerHTML='<div style="font-size:14px;color:var(--muted,#888);">No quotes submitted yet.</div>'; return; }
-  const newQ = quotes.filter(q=>q.status==='new');
-  const otherQ = quotes.filter(q=>q.status!=='new');
-  el.innerHTML = `
-    ${newQ.length>0?`<div style="font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">New quotes (${newQ.length})</div>${newQ.map(q=>quoteCard(q,true)).join('')}`:''}
-    ${otherQ.length>0?`<div style="font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin:12px 0 8px;">In progress / completed</div>${otherQ.map(q=>quoteCard(q,true)).join('')}`:''}
-  `;
-};
-
-window.loadOwnerQuotes = async function(){
-  const el = document.getElementById('owner-quotes');
-  if(!el) return;
-  const quotes = await api('GET', '/api/quotes');
-  if(!quotes.length){ el.innerHTML='<div style="font-size:14px;color:var(--muted,#888);">No quotes submitted yet.</div>'; return; }
-  el.innerHTML = quotes.map(q=>quoteCard(q,true)).join('');
-};
-
-window.updateQuoteStatus = async function(id, status){
-  await api('PATCH', '/api/quotes/'+id, {status});
-};
-
-window.updateQuoteNotes = async function(id, notes){
-  await api('PATCH', '/api/quotes/'+id, {notes});
-};
-
-window.deleteQuote = async function(id){
-  await api('DELETE', '/api/quotes/'+id);
-  loadSecQuotes();
-  loadOwnerQuotes();
-};
-
-})();
-</script>
-<script>
-(function(){
-const _renderSecretaryApp = window.renderSecretaryApp;
-window.renderSecretaryApp = async function(){
-  const [empData, goals, posts, quotes] = await Promise.all([
-    api('GET', '/api/employees'),
-    api('GET', '/api/goals'),
-    api('GET', '/api/posts'),
-    api('GET', '/api/quotes'),
-  ]);
-  const tabs = [
-    {id:'sec-overview', label:'Overview'},
-    {id:'sec-summary', label:'Summary'},
-    {id:'sec-team', label:'Team'},
-    {id:'sec-goals', label:'Goals'},
-    {id:'sec-quotes', label:'Quotes'},
-    {id:'sec-payments', label:'Pay tracker'},
-    {id:'sec-board', label:'Team board'},
-  ];
-  setupTabs(tabs, 'sec-overview');
-
-  const fmt = n => '$' + Math.round(n).toLocaleString();
-  const ini = name => name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-
-  // Overview
-  const employees = empData.employees;
-  const ownerSales = empData.ownerSales;
-  const totalRev = employees.reduce((s,e)=>s+e.revenue,0) + ownerSales.revenue;
-  const totalComm = employees.reduce((s,e)=>s+e.earned,0);
-  const totalInst = employees.reduce((s,e)=>s+e.installs,0) + ownerSales.installs;
-  document.getElementById('sec-overview').innerHTML = `
-    <div style="background:#EAF3DE;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;">
-      <div><div style="font-size:13px;color:#1D9E75;font-weight:500;">Total revenue</div><div style="font-size:12px;color:#3B6D11;margin-top:2px;">all employees</div></div>
-      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#085041;">${fmt(totalRev)}</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;">
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Commissions paid</div><div style="font-size:22px;font-weight:600;">${fmt(totalComm)}</div></div>
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Total installs</div><div style="font-size:22px;font-weight:600;">${totalInst}</div></div>
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Active quotes</div><div style="font-size:22px;font-weight:600;">${quotes.filter(q=>q.status!=='installed').length}</div></div>
-    </div>
-    <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;">
-      <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;">All employees</div>
-      ${[...employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`
-        <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);">
-          <div style="font-size:12px;font-weight:600;color:#888;width:20px;">#${i+1}</div>
-          <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:${e.color};color:${e.tc};flex-shrink:0;">${ini(e.name)}</div>
-          <div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:#888;">${e.installs} installs · ${e.rate}%</div></div>
-          <div style="text-align:right;"><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(e.earned)}</div><div style="font-size:11px;color:#888;">${fmt(e.revenue)} rev</div></div>
-        </div>`).join('')}
-    </div>`;
-
-  // Summary
-  const summary = await api('GET', '/api/summary');
-  const unpaidCount = summary.unpaidCount || 0;
-  const unpaidTotal = summary.unpaidTotal || 0;
-  document.getElementById('sec-summary').innerHTML = `
-    ${unpaidCount > 0 ? `<div style="background:#FAEEDA;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;border-left:3px solid #BA7517;"><div><div style="font-size:13px;color:#633806;font-weight:500;">Commissions to pay out</div><div style="font-size:11px;color:#854F0B;margin-top:2px;">${unpaidCount} sale${unpaidCount!==1?'s':''} not yet marked paid</div></div><div style="font-size:18px;font-weight:600;color:#633806;">${fmt(unpaidTotal*0.4)}</div></div>` : `<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;margin-bottom:1rem;font-size:13px;color:#085041;font-weight:500;">All commissions paid up to date</div>`}
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Today's revenue</div><div style="font-size:22px;font-weight:600;">${fmt(summary.todayRev)}</div><div style="font-size:11px;color:#888;margin-top:3px;">${summary.todaySales} sale${summary.todaySales!==1?'s':''} today</div></div>
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">This week's revenue</div><div style="font-size:22px;font-weight:600;">${fmt(summary.weekRev)}</div><div style="font-size:11px;color:#888;margin-top:3px;">${summary.weekSales} sale${summary.weekSales!==1?'s':''} this week</div></div>
-    </div>
-    ${summary.topPerformer ? `<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;border-left:3px solid #1D9E75;"><div><div style="font-size:13px;color:#085041;font-weight:500;">Top performer</div><div style="font-size:16px;font-weight:600;color:#085041;">${summary.topPerformer.name}</div></div><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(summary.topPerformer.revenue)}</div></div>` : ''}`;
-
-  // Team
-  document.getElementById('sec-team').innerHTML = `
-    <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;">
-      ${[...employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`
-        <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-            <div style="font-size:12px;font-weight:600;color:#888;width:20px;">#${i+1}</div>
-            <div style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:${e.color};color:${e.tc};">${ini(e.name)}</div>
-            <div style="flex:1;"><div style="font-size:15px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:#888;">${e.installs} installs · ${e.rate}%</div></div>
-          </div>
-          <div style="background:#EAF3DE;border-radius:10px;padding:1rem;text-align:center;margin-bottom:10px;">
-            <div style="font-size:12px;color:#1D9E75;font-weight:500;margin-bottom:4px;">Total earned</div>
-            <div style="font-family:'DM Serif Display',serif;font-size:32px;color:#085041;">${fmt(e.earned)}</div>
-            <div style="font-size:12px;color:#1D9E75;margin-top:4px;">from ${fmt(e.revenue)} in revenue</div>
-          </div>
-        </div>`).join('')}
-    </div>`;
-
-  // Goals
-  const statusColors = {new:{bg:'#FAEEDA',color:'#633806',label:'New'},ordered:{bg:'#E6F1FB',color:'#0C447C',label:'Lights ordered'},scheduled:{bg:'#EEEDFE',color:'#3C3489',label:'Scheduled'},installed:{bg:'#EAF3DE',color:'#085041',label:'Installed'}};
-  document.getElementById('sec-goals').innerHTML = goals.length === 0 ? '<div style="font-size:14px;color:#888;">No goals set yet.</div>' :
-    goals.map(g => {
-      const e = employees.find(x=>x.id===g.userId);
-      if(!e) return '';
-      const p = e.revenue > 0 ? Math.min(100, Math.round((e.revenue/g.target)*100)) : 0;
-      const achieved = e.revenue >= g.target;
-      return `<div style="background:#fff;border:1px solid ${achieved?'#1D9E75':'rgba(0,0,0,0.08)'};border-radius:14px;padding:1.25rem;margin-bottom:10px;${achieved?'background:#EAF3DE;':''}">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:${e.color};color:${e.tc};">${ini(e.name)}</div>
-          <div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><span style="font-size:11px;padding:2px 8px;border-radius:20px;background:${achieved?'#EAF3DE':'#FAEEDA'};color:${achieved?'#085041':'#633806'};font-weight:600;">${achieved?'Achieved: ':'Prize: '}${g.prize}</span></div>
-          <div style="font-size:13px;font-weight:500;">${fmt(e.revenue)} / ${fmt(g.target)}</div>
-        </div>
-        <div style="height:10px;background:#F8F7F4;border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;background:${achieved?'#1D9E75':'#378ADD'};width:${p}%"></div></div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#888;"><span>Current: ${fmt(e.revenue)}</span><span style="color:${achieved?'#1D9E75':'#888'};">${achieved?'Unlocked!':'Need '+fmt(Math.max(0,g.target-e.revenue))+' more'}</span><span>Target: ${fmt(g.target)}</span></div>
-      </div>`;
-    }).join('');
-
-  // Quotes
-  const newQ = quotes.filter(q=>q.status==='new');
-  const otherQ = quotes.filter(q=>q.status!=='new');
-  document.getElementById('sec-quotes').innerHTML = quotes.length === 0 ? '<div style="font-size:14px;color:#888;">No quotes submitted yet.</div>' : `
-    ${newQ.length>0?`<div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">New (${newQ.length})</div>${newQ.map(q=>{const s=statusColors[q.status]||statusColors.new;return`<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div><div style="font-size:15px;font-weight:600;">${q.address}</div><div style="font-size:12px;color:#888;">${q.employeeName} · ${q.date} · ${q.footage}ft</div></div><div style="text-align:right;"><div style="font-size:18px;font-weight:600;color:#085041;">${fmt(q.finalPrice)}</div><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;"><select onchange="secUpdateStatus(${q.id},this.value)" style="padding:7px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;">${Object.entries(statusColors).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}</select><button onclick="secDeleteQuote(${q.id})" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;">Remove</button></div><textarea placeholder="Notes..." onchange="secUpdateNotes(${q.id},this.value)" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:55px;">${q.notes||''}</textarea></div>`;}).join('')}`:''}
-    ${otherQ.length>0?`<div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin:12px 0 8px;">In progress / completed</div>${otherQ.map(q=>{const s=statusColors[q.status]||statusColors.new;return`<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div><div style="font-size:15px;font-weight:600;">${q.address}</div><div style="font-size:12px;color:#888;">${q.employeeName} · ${q.date} · ${q.footage}ft</div></div><div style="text-align:right;"><div style="font-size:18px;font-weight:600;color:#085041;">${fmt(q.finalPrice)}</div><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;"><select onchange="secUpdateStatus(${q.id},this.value)" style="padding:7px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;">${Object.entries(statusColors).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}</select><button onclick="secDeleteQuote(${q.id})" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;">Remove</button></div><textarea placeholder="Notes..." onchange="secUpdateNotes(${q.id},this.value)" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:55px;">${q.notes||''}</textarea></div>`;}).join('')}`:''}`;
-
-  // Pay tracker
-  const salesRes = await fetch('/api/all-sales', {credentials:'include'});
-  const sales = salesRes.ok ? await salesRes.json() : [];
-  document.getElementById('sec-payments').innerHTML = sales.length === 0 ? '<div style="font-size:14px;color:#888;">No sales logged yet.</div>' : `
-    <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;">
-      ${sales.map(s => {
-        const emp = employees.find(e=>e.id===s.userId);
-        if(!emp) return '';
-        const comm = s.amount*(emp.rate/100);
-        return `<div style="display:grid;grid-template-columns:1fr 70px 70px 90px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);${s.paid?'opacity:0.5':''}">
-          <div><div style="font-size:13px;font-weight:500;">${emp.name}</div><div style="font-size:11px;color:#888;">${s.address||s.date}</div></div>
-          <div style="font-size:13px;">${fmt(s.amount)}</div>
-          <div style="font-size:13px;color:#085041;font-weight:500;">${fmt(comm)}</div>
-          <button onclick="secTogglePaid(${s.id},${!s.paid})" style="padding:5px 10px;border-radius:6px;border:1px solid;font-size:11px;font-weight:500;cursor:pointer;background:${s.paid?'transparent':'#085041'};color:${s.paid?'#888':'#fff'};border-color:${s.paid?'rgba(0,0,0,0.12)':'#085041'};">${s.paid?'Paid':'Mark paid'}</button>
-        </div>`;
-      }).join('')}
-    </div>`;
-
-  // Board
-  document.getElementById('sec-board').innerHTML = posts.length === 0 ? '<div style="font-size:14px;color:#888;">No posts yet.</div>' :
-    [...posts].sort((a,b)=>(b.pin?1:0)-(a.pin?1:0)).map(p => {
-      if(p.type==='quote') return `<div style="background:#FAEEDA;border-left:3px solid #BA7517;border-radius:0 14px 14px 0;padding:1rem 1.25rem;margin-bottom:10px;"><div style="font-family:'DM Serif Display',serif;font-size:16px;color:#633806;font-style:italic;margin-bottom:5px;">"${p.body}"</div><div style="font-size:12px;color:#BA7517;font-weight:500;">— ${p.author} · ${p.date}</div></div>`;
-      return `<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);${p.pin?'border-left:3px solid #534AB7;border-radius:0 14px 14px 0;':'border-radius:14px;'}padding:1rem 1.25rem;margin-bottom:10px;"><div style="font-size:12px;font-weight:500;margin-bottom:5px;">To: ${p.target}${p.pin?'<span style="font-size:10px;padding:2px 7px;border-radius:20px;background:#EEEDFE;color:#534AB7;font-weight:600;margin-left:6px;">Pinned</span>':''}</div><div style="font-size:14px;line-height:1.6;margin-bottom:5px;">${p.body}</div><div style="font-size:11px;color:#888;">${p.date}</div></div>`;
-    }).join('');
-};
-
-window.secUpdateStatus = async function(id, status){
-  await api('PATCH', '/api/quotes/'+id, {status});
-};
-window.secUpdateNotes = async function(id, notes){
-  await api('PATCH', '/api/quotes/'+id, {notes});
-};
-window.secDeleteQuote = async function(id){
-  await api('DELETE', '/api/quotes/'+id);
-  window.renderSecretaryApp();
-};
-window.secTogglePaid = async function(id, paid){
-  await api('PATCH', '/api/sales/'+id+'/paid', {paid});
-  window.renderSecretaryApp();
-};
-
-})();
-</script>
-<script>
-(function(){
-
-function buildCalendar(sales, rate, containerId, showAll, employees){
-  const el = document.getElementById(containerId);
-  if(!el) return;
-  const fmt = n => '$'+Math.round(n).toLocaleString();
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const empColors = ['#1D9E75','#378ADD','#534AB7','#BA7517','#D85A30','#D4537E','#639922','#888780','#E24B4A'];
-
-  let weekOffset = 0;
-
-  function dateStr(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-
-  function getWeekDates(offset){
-    const now = new Date();
-    const day = now.getDay();
-    const start = new Date(now);
-    start.setDate(now.getDate() - day + (offset*7));
-    return Array.from({length:7},(_,i)=>{ const d=new Date(start); d.setDate(start.getDate()+i); return d; });
-  }
-
-  function render(){
-    const dates = getWeekDates(weekOffset);
-    const todayStr = dateStr(new Date());
-    const startLabel = months[dates[0].getMonth()]+' '+dates[0].getDate();
-    const endLabel = months[dates[6].getMonth()]+' '+dates[6].getDate()+', '+dates[6].getFullYear();
-
-    let weekSales = sales.filter(s => {
-      const d = new Date(s.date+'T12:00:00');
-      return dates.some(wd => dateStr(wd) === dateStr(d));
-    });
-
-    const weekEarned = weekSales.reduce((sum,s) => {
-      if(showAll && employees){
-        const emp = employees.find(e=>e.id===s.userId);
-        return sum + (emp ? s.amount*(emp.rate/100) : 0);
-      }
-      return sum + s.amount*(rate/100);
-    }, 0);
-    const weekRev = weekSales.reduce((sum,s)=>sum+s.amount,0);
-
-    el.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
-        <button onclick="window._calNav_${containerId}(-1)" style="background:none;border:0.5px solid rgba(0,0,0,0.15);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text,#1a1a1a);font-family:'DM Sans',sans-serif;">← Prev</button>
-        <div style="font-size:14px;font-weight:500;color:var(--text,#1a1a1a);">${startLabel} – ${endLabel}</div>
-        <button onclick="window._calNav_${containerId}(1)" style="background:none;border:0.5px solid rgba(0,0,0,0.15);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text,#1a1a1a);font-family:'DM Sans',sans-serif;">Next →</button>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;">
-        <div style="background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;">${showAll?'Week revenue':'Week earned'}</div><div style="font-size:22px;font-weight:600;color:var(--text,#1a1a1a);">${showAll?fmt(weekRev):fmt(weekEarned)}</div></div>
-        <div style="background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;">Jobs this week</div><div style="font-size:22px;font-weight:600;color:var(--text,#1a1a1a);">${weekSales.length}</div></div>
-        <div style="background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;">Avg per job</div><div style="font-size:22px;font-weight:600;color:var(--text,#1a1a1a);">${weekSales.length>0?fmt((showAll?weekRev:weekEarned)/weekSales.length):'$0'}</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:1rem;">
-        ${days.map(d=>`<div style="text-align:center;font-size:10px;font-weight:600;color:var(--muted,#888);padding:4px 0;text-transform:uppercase;letter-spacing:.04em;">${d}</div>`).join('')}
-        ${dates.map(d => {
-          const ds = dateStr(d);
-          const dayJobs = sales.filter(s => dateStr(new Date(s.date+'T12:00:00')) === ds);
-          const isToday = ds === todayStr;
-          const hasJob = dayJobs.length > 0;
-          const dots = showAll && employees ? dayJobs.map((j,i) => {
-            const emp = employees.find(e=>e.id===j.userId);
-            const color = emp ? empColors[employees.indexOf(emp) % empColors.length] : '#1D9E75';
-            return `<div style="width:8px;height:8px;border-radius:50%;background:${color};display:inline-block;margin:1px;"></div>`;
-          }).join('') : (hasJob ? `<div style="background:#EAF3DE;border-radius:4px;padding:2px 4px;font-size:10px;color:#085041;font-weight:600;margin-bottom:2px;">${dayJobs.length} job${dayJobs.length>1?'s':''}</div><div style="font-size:10px;color:#3B6D11;font-weight:500;">${fmt(dayJobs.reduce((s,j)=>s+j.amount*(rate/100),0))}</div>` : '');
-          return `<div style="background:${hasJob?'#EAF3DE':'var(--card,#fff)'};border:${isToday?'1.5px solid #1D9E75':'0.5px solid rgba(0,0,0,0.08)'};border-radius:8px;padding:6px;min-height:64px;">
-            <div style="font-size:12px;font-weight:${isToday?'700':'500'};color:${isToday?'#085041':'var(--muted,#888)'};margin-bottom:4px;">${d.getDate()}</div>
-            ${dots}
-          </div>`;
-        }).join('')}
-      </div>
-      ${weekSales.length > 0 ? `
-      <div style="background:var(--card,#fff);border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1rem 1.25rem;">
-        <div style="font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Jobs this week</div>
-        ${weekSales.map(s => {
-          const emp = showAll && employees ? employees.find(e=>e.id===s.userId) : null;
-          const earned = emp ? s.amount*(emp.rate/100) : s.amount*(rate/100);
-          const color = emp ? empColors[employees.indexOf(emp)%empColors.length] : '#1D9E75';
-          const d = new Date(s.date+'T12:00:00');
-          return `<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">
-            ${showAll?`<div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;"></div>`:''}
-            <div style="font-size:12px;color:var(--muted,#888);width:${showAll?'auto':'60px'};">${days[d.getDay()]} ${d.getDate()}${showAll?'':''}</div>
-            ${emp?`<div style="font-size:12px;font-weight:500;color:var(--text,#1a1a1a);flex:1;">${emp.name}</div>`:''}
-            <div style="font-size:13px;color:var(--text,#1a1a1a);flex:${showAll?0:1};">${s.address||'—'}</div>
-            <div style="font-size:13px;font-weight:600;color:#085041;">${fmt(showAll?s.amount:earned)}</div>
-          </div>`;
-        }).join('')}
-      </div>` : '<div style="text-align:center;font-size:13px;color:var(--muted,#888);padding:1rem 0;">No jobs this week</div>'}
-    `;
-  }
-
-  window[`_calNav_${containerId}`] = function(dir){ weekOffset+=dir; render(); };
-  render();
-}
-
-// Inject into employee dashboard
-const _renderEmployeeApp = window.renderEmployeeApp;
-window.renderEmployeeApp = async function(){
-  await _renderEmployeeApp();
-  const data = await fetch('/api/my-stats', {credentials:'include'}).then(r=>r.json());
-  const myDash = document.getElementById('my-dash');
-  if(!myDash) return;
-  const calDiv = document.createElement('div');
-  calDiv.id = 'emp-calendar';
-  calDiv.style.cssText = 'margin-top:1rem;background:var(--card,#fff);border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
-  const title = document.createElement('div');
-  title.style.cssText = 'font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;';
-  title.textContent = 'Job calendar';
-  calDiv.appendChild(title);
-  const inner = document.createElement('div');
-  inner.id = 'emp-cal-inner';
-  calDiv.appendChild(inner);
-  myDash.appendChild(calDiv);
-  buildCalendar(data.sales||[], data.rate, 'emp-cal-inner', false, null);
-};
-
-// Inject into owner overview
-const _renderOverview = window.renderOverview;
-window.renderOverview = function(empData, goals){
-  _renderOverview(empData, goals);
-  setTimeout(async () => {
-    const overviewEl = document.getElementById('overview');
-    if(!overviewEl) return;
-    const salesRes = await fetch('/api/all-sales', {credentials:'include'});
-    const allSales = salesRes.ok ? await salesRes.json() : [];
-    const calDiv = document.createElement('div');
-    calDiv.style.cssText = 'margin-top:1rem;background:var(--card,#fff);border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
-    const title = document.createElement('div');
-    title.style.cssText = 'font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;';
-    title.textContent = 'Team job calendar';
-    calDiv.appendChild(title);
-    const inner = document.createElement('div');
-    inner.id = 'owner-cal-inner';
-    calDiv.appendChild(inner);
-    overviewEl.appendChild(calDiv);
-    buildCalendar(allSales, 40, 'owner-cal-inner', true, empData.employees);
-  }, 100);
-};
-
-// Inject into secretary overview
-const _renderSecretaryApp = window.renderSecretaryApp;
-window.renderSecretaryApp = async function(){
-  await _renderSecretaryApp();
-  setTimeout(async () => {
-    const secOverview = document.getElementById('sec-overview');
-    if(!secOverview) return;
-    const [salesRes, empData] = await Promise.all([
-      fetch('/api/all-sales', {credentials:'include'}),
-      fetch('/api/employees', {credentials:'include'}).then(r=>r.json())
-    ]);
-    const allSales = salesRes.ok ? await salesRes.json() : [];
-    const calDiv = document.createElement('div');
-    calDiv.style.cssText = 'margin-top:1rem;background:#fff;border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
-    const title = document.createElement('div');
-    title.style.cssText = 'font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;';
-    title.textContent = 'Team job calendar';
-    calDiv.appendChild(title);
-    const inner = document.createElement('div');
-    inner.id = 'sec-cal-inner';
-    calDiv.appendChild(inner);
-    secOverview.appendChild(calDiv);
-    buildCalendar(allSales, 40, 'sec-cal-inner', true, empData.employees);
-  }, 200);
-};
-
-})();
-</script>
-<script>
-(function(){
-const _renderEmployeeApp = window.renderEmployeeApp;
-window.renderEmployeeApp = async function(){
-  await _renderEmployeeApp();
-  const myDash = document.getElementById('my-dash');
-  if(!myDash) return;
-
-  const [myStats, empData] = await Promise.all([
-    fetch('/api/my-stats',{credentials:'include'}).then(r=>r.json()),
-    fetch('/api/employees',{credentials:'include'}).then(r=>r.json())
-  ]);
-
-  const sorted = [...empData.employees].sort((a,b)=>b.revenue-a.revenue);
-  const myRank = sorted.findIndex(e=>e.id===myStats.id||e.name===myStats.name) + 1;
-  const total = sorted.length;
-  const fmt = n => '$'+Math.round(n).toLocaleString();
-
-  const rankDiv = document.createElement('div');
-  rankDiv.style.cssText = 'margin-top:1rem;background:#fff;border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
-
-  const pct = myRank > 0 ? Math.round(((total - myRank) / (total - 1 || 1)) * 100) : 0;
-  const isFirst = myRank === 1;
-  const rankColor = isFirst ? '#085041' : myRank <= 3 ? '#1D9E75' : '#888';
-
-  rankDiv.innerHTML = `
-    <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;">Your team ranking</div>
-    <div style="text-align:center;padding:1rem 0 1.25rem;">
-      <div style="font-size:13px;color:#888;margin-bottom:6px;">You are ranked</div>
-      <div style="font-family:'DM Serif Display',serif;font-size:64px;line-height:1;color:${rankColor};">#${myRank > 0 ? myRank : '—'}</div>
-      <div style="font-size:13px;color:#888;margin-top:6px;">out of ${total} employees</div>
-    </div>
-    <div style="margin-bottom:14px;">
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:#888;margin-bottom:6px;"><span>#${total}</span><span>#1</span></div>
-      <div style="height:10px;background:#F8F7F4;border-radius:99px;overflow:hidden;position:relative;">
-        <div style="height:100%;border-radius:99px;background:${rankColor};width:${pct}%;transition:width .5s;"></div>
-        <div style="position:absolute;top:50%;transform:translate(-50%,-50%);left:${pct}%;width:14px;height:14px;border-radius:50%;background:${rankColor};border:2px solid #fff;margin-top:0;"></div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;">
-        <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Your revenue</div>
-        <div style="font-size:18px;font-weight:600;color:#1a1a1a;">${fmt(myStats.revenue)}</div>
-      </div>
-      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;">
-        <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Your earned</div>
-        <div style="font-size:18px;font-weight:600;color:#085041;">${fmt(myStats.earned)}</div>
-      </div>
-    </div>
-    ${isFirst ? `<div style="margin-top:12px;background:#EAF3DE;border-radius:10px;padding:10px 14px;text-align:center;font-size:13px;font-weight:500;color:#085041;">You're leading the team — keep it up!</div>` : myRank <= 3 ? `<div style="margin-top:12px;background:#EAF3DE;border-radius:10px;padding:10px 14px;text-align:center;font-size:13px;font-weight:500;color:#085041;">You're in the top 3 — push for #1!</div>` : `<div style="margin-top:12px;background:#FAEEDA;border-radius:10px;padding:10px 14px;text-align:center;font-size:13px;font-weight:500;color:#633806;">Keep closing deals to climb the ranks!</div>`}
-  `;
-  myDash.appendChild(rankDiv);
-};
-})();
-</script>
-<script>
-(function(){
-const _renderEmployeeApp = window.renderEmployeeApp;
-window.renderEmployeeApp = async function(){
-  await _renderEmployeeApp();
-  const wrap = document.getElementById('tabs-wrap');
-  const content = document.getElementById('content');
-  const newTab = document.createElement('button');
-  newTab.className = 'tab-btn';
-  newTab.textContent = 'My ranking';
-  newTab.onclick = function(){ switchTab('rank-tab', this); loadRankTab(); };
-  wrap.appendChild(newTab);
-  const newView = document.createElement('div');
-  newView.className = 'view';
-  newView.id = 'rank-tab';
-  newView.innerHTML = '<div style="font-size:14px;color:#888;padding:1rem 0;">Loading...</div>';
-  content.appendChild(newView);
-};
-
-window.loadRankTab = async function(){
-  const el = document.getElementById('rank-tab');
-  if(!el) return;
-  const [myStats, empData] = await Promise.all([
-    fetch('/api/my-stats',{credentials:'include'}).then(r=>r.json()),
-    fetch('/api/employees',{credentials:'include'}).then(r=>r.json())
-  ]);
-  const sorted = [...empData.employees].sort((a,b)=>b.revenue-a.revenue);
-  const myRank = sorted.findIndex(e=>e.name===myStats.name) + 1;
-  const total = sorted.length;
-  const fmt = n => '$'+Math.round(n).toLocaleString();
-  const pct = myRank > 0 ? Math.round(((total - myRank) / (total - 1 || 1)) * 100) : 0;
-  const isFirst = myRank === 1;
-  const rankColor = isFirst ? '#085041' : myRank <= 3 ? '#1D9E75' : '#888';
-
-  el.innerHTML = `
-    <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.5rem;margin-bottom:1rem;">
-      <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;">Your team ranking</div>
-      <div style="text-align:center;padding:1rem 0 1.25rem;">
-        <div style="font-size:13px;color:#888;margin-bottom:6px;">You are ranked</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:80px;line-height:1;color:${rankColor};">#${myRank > 0 ? myRank : '—'}</div>
-        <div style="font-size:14px;color:#888;margin-top:8px;">out of ${total} employees</div>
-      </div>
-      <div style="margin-bottom:16px;">
-        <div style="display:flex;justify-content:space-between;font-size:11px;color:#888;margin-bottom:6px;"><span>Last place</span><span>1st place</span></div>
-        <div style="height:12px;background:#F8F7F4;border-radius:99px;overflow:hidden;">
-          <div style="height:100%;border-radius:99px;background:${rankColor};width:${pct}%;"></div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
-        <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;">
-          <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Your revenue</div>
-          <div style="font-size:20px;font-weight:600;color:#1a1a1a;">${fmt(myStats.revenue)}</div>
-        </div>
-        <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;">
-          <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Your earned</div>
-          <div style="font-size:20px;font-weight:600;color:#085041;">${fmt(myStats.earned)}</div>
-        </div>
-      </div>
-      <div style="background:${isFirst?'#EAF3DE':myRank<=3?'#EAF3DE':'#FAEEDA'};border-radius:10px;padding:12px 14px;text-align:center;font-size:14px;font-weight:500;color:${isFirst?'#085041':myRank<=3?'#085041':'#633806'};">
-        ${isFirst ? 'You are leading the team — keep it up!' : myRank<=3 ? 'You are in the top 3 — push for #1!' : 'Keep closing deals to climb the ranks!'}
-      </div>
-    </div>
-  `;
-};
-})();
-</script>
