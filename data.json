@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "owner",
+      "password": "$2a$10$brRPQJxaGWXuhrhKHGiL0eLZ.PqDarmw8S08tPKzT1i1nuz4RVWjq",
+      "role": "owner",
+      "name": "Lane (Owner)"
+    },
+    {
+      "id": 2,
+      "username": "secretary",
+      "password": "$2a$10$xbRfzEysdBYNTKL2FXD.L.L.hYLCx7bTp4W.MQ9pVoVPnv4BUkf9W",
+      "role": "secretary",
+      "name": "Secretary"
+    },
+    {
+      "id": 3,
+      "username": "jake",
+      "password": "$2a$10$GdSFSeAVyEsWkayx2DAdTOkSsgr8kWFe9WvWZb6T84kqLhwf0tE/W",
+      "role": "employee",
+      "name": "Jake M.",
+      "rate": 40,
+      "color": "#E6F1FB",
+      "tc": "#0C447C"
+    },
+    {
+      "id": 4,
+      "username": "ryan",
+      "password": "$2a$10$.7LJo5HfzqA0cqltcQu7xuOJsPQL81VxAoZw2fUuuAPE0om.2eYW.",
+      "role": "employee",
+      "name": "Ryan T.",
+      "rate": 40,
+      "color": "#EAF3DE",
+      "tc": "#27500A"
+    },
+    {
+      "id": 5,
+      "username": "chris",
+      "password": "$2a$10$/Y4RKi6HHI4sE7VvjiyGaOJEKxLibaCl3lR9MaXVNyXZdkiEKz842",
+      "role": "employee",
+      "name": "Chris B.",
+      "rate": 50,
+      "color": "#EEEDFE",
+      "tc": "#3C3489"
+    },
+    {
+      "id": 6,
+      "username": "marcus",
+      "password": "$2a$10$ANkScOWXPa9NbDFslF1xkeSbiZhoTlNZ93aoM7E.MeXl5cnrTIhLm",
+      "role": "employee",
+      "name": "Marcus L.",
+      "rate": 40,
+      "color": "#FAEEDA",
+      "tc": "#633806"
+    },
+    {
+      "id": 7,
+      "username": "derek",
+      "password": "$2a$10$SgQkVW/nck0o9BHLUVhwZuqoZhiPFTe4ogiyjMyNLmysIixeF.x2a",
+      "role": "employee",
+      "name": "Derek W.",
+      "rate": 50,
+      "color": "#E1F5EE",
+      "tc": "#085041"
+    },
+    {
+      "id": 8,
+      "username": "sam",
+      "password": "$2a$10$1WC0Z1OumXgSXd9N4rMrE.a8eQ0mdoAI82xwQKghvuMSO6a3VmeOq",
+      "role": "employee",
+      "name": "Sam P.",
+      "rate": 40,
+      "color": "#FAECE7",
+      "tc": "#712B13"
+    },
+    {
+      "id": 9,
+      "username": "tyler",
+      "password": "$2a$10$Z92VEIrLO9/x6uE3JtPvre4DBg.Bum3Vh98Sa9jfTeFjoo6ZWMilq",
+      "role": "employee",
+      "name": "Tyler H.",
+      "rate": 40,
+      "color": "#F1EFE8",
+      "tc": "#444441"
+    },
+    {
+      "id": 10,
+      "username": "nate",
+      "password": "$2a$10$82VatzDtn5Lmqh.LDYOT8u6rG3x12ZQA6dBT9LNi6i4wZhoYJAtim",
+      "role": "employee",
+      "name": "Nate K.",
+      "rate": 40,
+      "color": "#FBEAF0",
+      "tc": "#72243E"
+    },
+    {
+      "id": 11,
+      "username": "austin",
+      "password": "$2a$10$XdyG8IxWIFbTrlzTxG9pKeL11YPNikmiWyqYx68fB9Lqizdy7OL7u",
+      "role": "employee",
+      "name": "Austin R.",
+      "rate": 40,
+      "color": "#FCEBEB",
+      "tc": "#791F1F"
+    }
+  ],
+  "sales": [],
+  "goals": [],
+  "posts": [],
+  "ownerSales": {
+    "revenue": 0,
+    "installs": 0
+  }
+}
