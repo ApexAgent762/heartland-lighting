@@ -663,3 +663,153 @@ window.deleteQuote = async function(id){
 
 })();
 </script>
+<script>
+(function(){
+const _renderSecretaryApp = window.renderSecretaryApp;
+window.renderSecretaryApp = async function(){
+  const [empData, goals, posts, quotes] = await Promise.all([
+    api('GET', '/api/employees'),
+    api('GET', '/api/goals'),
+    api('GET', '/api/posts'),
+    api('GET', '/api/quotes'),
+  ]);
+  const tabs = [
+    {id:'sec-overview', label:'Overview'},
+    {id:'sec-summary', label:'Summary'},
+    {id:'sec-team', label:'Team'},
+    {id:'sec-goals', label:'Goals'},
+    {id:'sec-quotes', label:'Quotes'},
+    {id:'sec-payments', label:'Pay tracker'},
+    {id:'sec-board', label:'Team board'},
+  ];
+  setupTabs(tabs, 'sec-overview');
+
+  const fmt = n => '$' + Math.round(n).toLocaleString();
+  const ini = name => name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+
+  // Overview
+  const employees = empData.employees;
+  const ownerSales = empData.ownerSales;
+  const totalRev = employees.reduce((s,e)=>s+e.revenue,0) + ownerSales.revenue;
+  const totalComm = employees.reduce((s,e)=>s+e.earned,0);
+  const totalInst = employees.reduce((s,e)=>s+e.installs,0) + ownerSales.installs;
+  document.getElementById('sec-overview').innerHTML = `
+    <div style="background:#EAF3DE;border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;">
+      <div><div style="font-size:13px;color:#1D9E75;font-weight:500;">Total revenue</div><div style="font-size:12px;color:#3B6D11;margin-top:2px;">all employees</div></div>
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:#085041;">${fmt(totalRev)}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;">
+      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Commissions paid</div><div style="font-size:22px;font-weight:600;">${fmt(totalComm)}</div></div>
+      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Total installs</div><div style="font-size:22px;font-weight:600;">${totalInst}</div></div>
+      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Active quotes</div><div style="font-size:22px;font-weight:600;">${quotes.filter(q=>q.status!=='installed').length}</div></div>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;">
+      <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;">All employees</div>
+      ${[...employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);">
+          <div style="font-size:12px;font-weight:600;color:#888;width:20px;">#${i+1}</div>
+          <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:${e.color};color:${e.tc};flex-shrink:0;">${ini(e.name)}</div>
+          <div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:#888;">${e.installs} installs · ${e.rate}%</div></div>
+          <div style="text-align:right;"><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(e.earned)}</div><div style="font-size:11px;color:#888;">${fmt(e.revenue)} rev</div></div>
+        </div>`).join('')}
+    </div>`;
+
+  // Summary
+  const summary = await api('GET', '/api/summary');
+  const unpaidCount = summary.unpaidCount || 0;
+  const unpaidTotal = summary.unpaidTotal || 0;
+  document.getElementById('sec-summary').innerHTML = `
+    ${unpaidCount > 0 ? `<div style="background:#FAEEDA;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;border-left:3px solid #BA7517;"><div><div style="font-size:13px;color:#633806;font-weight:500;">Commissions to pay out</div><div style="font-size:11px;color:#854F0B;margin-top:2px;">${unpaidCount} sale${unpaidCount!==1?'s':''} not yet marked paid</div></div><div style="font-size:18px;font-weight:600;color:#633806;">${fmt(unpaidTotal*0.4)}</div></div>` : `<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;margin-bottom:1rem;font-size:13px;color:#085041;font-weight:500;">All commissions paid up to date</div>`}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Today's revenue</div><div style="font-size:22px;font-weight:600;">${fmt(summary.todayRev)}</div><div style="font-size:11px;color:#888;margin-top:3px;">${summary.todaySales} sale${summary.todaySales!==1?'s':''} today</div></div>
+      <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">This week's revenue</div><div style="font-size:22px;font-weight:600;">${fmt(summary.weekRev)}</div><div style="font-size:11px;color:#888;margin-top:3px;">${summary.weekSales} sale${summary.weekSales!==1?'s':''} this week</div></div>
+    </div>
+    ${summary.topPerformer ? `<div style="background:#EAF3DE;border-radius:10px;padding:12px 1rem;display:flex;align-items:center;justify-content:space-between;border-left:3px solid #1D9E75;"><div><div style="font-size:13px;color:#085041;font-weight:500;">Top performer</div><div style="font-size:16px;font-weight:600;color:#085041;">${summary.topPerformer.name}</div></div><div style="font-size:16px;font-weight:600;color:#085041;">${fmt(summary.topPerformer.revenue)}</div></div>` : ''}`;
+
+  // Team
+  document.getElementById('sec-team').innerHTML = `
+    <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;">
+      ${[...employees].sort((a,b)=>b.revenue-a.revenue).map((e,i)=>`
+        <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <div style="font-size:12px;font-weight:600;color:#888;width:20px;">#${i+1}</div>
+            <div style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:${e.color};color:${e.tc};">${ini(e.name)}</div>
+            <div style="flex:1;"><div style="font-size:15px;font-weight:500;">${e.name}</div><div style="font-size:12px;color:#888;">${e.installs} installs · ${e.rate}%</div></div>
+          </div>
+          <div style="background:#EAF3DE;border-radius:10px;padding:1rem;text-align:center;margin-bottom:10px;">
+            <div style="font-size:12px;color:#1D9E75;font-weight:500;margin-bottom:4px;">Total earned</div>
+            <div style="font-family:'DM Serif Display',serif;font-size:32px;color:#085041;">${fmt(e.earned)}</div>
+            <div style="font-size:12px;color:#1D9E75;margin-top:4px;">from ${fmt(e.revenue)} in revenue</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  // Goals
+  const statusColors = {new:{bg:'#FAEEDA',color:'#633806',label:'New'},ordered:{bg:'#E6F1FB',color:'#0C447C',label:'Lights ordered'},scheduled:{bg:'#EEEDFE',color:'#3C3489',label:'Scheduled'},installed:{bg:'#EAF3DE',color:'#085041',label:'Installed'}};
+  document.getElementById('sec-goals').innerHTML = goals.length === 0 ? '<div style="font-size:14px;color:#888;">No goals set yet.</div>' :
+    goals.map(g => {
+      const e = employees.find(x=>x.id===g.userId);
+      if(!e) return '';
+      const p = e.revenue > 0 ? Math.min(100, Math.round((e.revenue/g.target)*100)) : 0;
+      const achieved = e.revenue >= g.target;
+      return `<div style="background:#fff;border:1px solid ${achieved?'#1D9E75':'rgba(0,0,0,0.08)'};border-radius:14px;padding:1.25rem;margin-bottom:10px;${achieved?'background:#EAF3DE;':''}">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:${e.color};color:${e.tc};">${ini(e.name)}</div>
+          <div style="flex:1;"><div style="font-size:14px;font-weight:500;">${e.name}</div><span style="font-size:11px;padding:2px 8px;border-radius:20px;background:${achieved?'#EAF3DE':'#FAEEDA'};color:${achieved?'#085041':'#633806'};font-weight:600;">${achieved?'Achieved: ':'Prize: '}${g.prize}</span></div>
+          <div style="font-size:13px;font-weight:500;">${fmt(e.revenue)} / ${fmt(g.target)}</div>
+        </div>
+        <div style="height:10px;background:#F8F7F4;border-radius:99px;overflow:hidden;"><div style="height:100%;border-radius:99px;background:${achieved?'#1D9E75':'#378ADD'};width:${p}%"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#888;"><span>Current: ${fmt(e.revenue)}</span><span style="color:${achieved?'#1D9E75':'#888'};">${achieved?'Unlocked!':'Need '+fmt(Math.max(0,g.target-e.revenue))+' more'}</span><span>Target: ${fmt(g.target)}</span></div>
+      </div>`;
+    }).join('');
+
+  // Quotes
+  const newQ = quotes.filter(q=>q.status==='new');
+  const otherQ = quotes.filter(q=>q.status!=='new');
+  document.getElementById('sec-quotes').innerHTML = quotes.length === 0 ? '<div style="font-size:14px;color:#888;">No quotes submitted yet.</div>' : `
+    ${newQ.length>0?`<div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">New (${newQ.length})</div>${newQ.map(q=>{const s=statusColors[q.status]||statusColors.new;return`<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div><div style="font-size:15px;font-weight:600;">${q.address}</div><div style="font-size:12px;color:#888;">${q.employeeName} · ${q.date} · ${q.footage}ft</div></div><div style="text-align:right;"><div style="font-size:18px;font-weight:600;color:#085041;">${fmt(q.finalPrice)}</div><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;"><select onchange="secUpdateStatus(${q.id},this.value)" style="padding:7px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;">${Object.entries(statusColors).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}</select><button onclick="secDeleteQuote(${q.id})" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;">Remove</button></div><textarea placeholder="Notes..." onchange="secUpdateNotes(${q.id},this.value)" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:55px;">${q.notes||''}</textarea></div>`;}).join('')}`:''}
+    ${otherQ.length>0?`<div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin:12px 0 8px;">In progress / completed</div>${otherQ.map(q=>{const s=statusColors[q.status]||statusColors.new;return`<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:10px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div><div style="font-size:15px;font-weight:600;">${q.address}</div><div style="font-size:12px;color:#888;">${q.employeeName} · ${q.date} · ${q.footage}ft</div></div><div style="text-align:right;"><div style="font-size:18px;font-weight:600;color:#085041;">${fmt(q.finalPrice)}</div><span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;"><select onchange="secUpdateStatus(${q.id},this.value)" style="padding:7px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;">${Object.entries(statusColors).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}</select><button onclick="secDeleteQuote(${q.id})" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;">Remove</button></div><textarea placeholder="Notes..." onchange="secUpdateNotes(${q.id},this.value)" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:55px;">${q.notes||''}</textarea></div>`;}).join('')}`:''}`;
+
+  // Pay tracker
+  const salesRes = await fetch('/api/all-sales', {credentials:'include'});
+  const sales = salesRes.ok ? await salesRes.json() : [];
+  document.getElementById('sec-payments').innerHTML = sales.length === 0 ? '<div style="font-size:14px;color:#888;">No sales logged yet.</div>' : `
+    <div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;">
+      ${sales.map(s => {
+        const emp = employees.find(e=>e.id===s.userId);
+        if(!emp) return '';
+        const comm = s.amount*(emp.rate/100);
+        return `<div style="display:grid;grid-template-columns:1fr 70px 70px 90px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.06);${s.paid?'opacity:0.5':''}">
+          <div><div style="font-size:13px;font-weight:500;">${emp.name}</div><div style="font-size:11px;color:#888;">${s.address||s.date}</div></div>
+          <div style="font-size:13px;">${fmt(s.amount)}</div>
+          <div style="font-size:13px;color:#085041;font-weight:500;">${fmt(comm)}</div>
+          <button onclick="secTogglePaid(${s.id},${!s.paid})" style="padding:5px 10px;border-radius:6px;border:1px solid;font-size:11px;font-weight:500;cursor:pointer;background:${s.paid?'transparent':'#085041'};color:${s.paid?'#888':'#fff'};border-color:${s.paid?'rgba(0,0,0,0.12)':'#085041'};">${s.paid?'Paid':'Mark paid'}</button>
+        </div>`;
+      }).join('')}
+    </div>`;
+
+  // Board
+  document.getElementById('sec-board').innerHTML = posts.length === 0 ? '<div style="font-size:14px;color:#888;">No posts yet.</div>' :
+    [...posts].sort((a,b)=>(b.pin?1:0)-(a.pin?1:0)).map(p => {
+      if(p.type==='quote') return `<div style="background:#FAEEDA;border-left:3px solid #BA7517;border-radius:0 14px 14px 0;padding:1rem 1.25rem;margin-bottom:10px;"><div style="font-family:'DM Serif Display',serif;font-size:16px;color:#633806;font-style:italic;margin-bottom:5px;">"${p.body}"</div><div style="font-size:12px;color:#BA7517;font-weight:500;">— ${p.author} · ${p.date}</div></div>`;
+      return `<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);${p.pin?'border-left:3px solid #534AB7;border-radius:0 14px 14px 0;':'border-radius:14px;'}padding:1rem 1.25rem;margin-bottom:10px;"><div style="font-size:12px;font-weight:500;margin-bottom:5px;">To: ${p.target}${p.pin?'<span style="font-size:10px;padding:2px 7px;border-radius:20px;background:#EEEDFE;color:#534AB7;font-weight:600;margin-left:6px;">Pinned</span>':''}</div><div style="font-size:14px;line-height:1.6;margin-bottom:5px;">${p.body}</div><div style="font-size:11px;color:#888;">${p.date}</div></div>`;
+    }).join('');
+};
+
+window.secUpdateStatus = async function(id, status){
+  await api('PATCH', '/api/quotes/'+id, {status});
+};
+window.secUpdateNotes = async function(id, notes){
+  await api('PATCH', '/api/quotes/'+id, {notes});
+};
+window.secDeleteQuote = async function(id){
+  await api('DELETE', '/api/quotes/'+id);
+  window.renderSecretaryApp();
+};
+window.secTogglePaid = async function(id, paid){
+  await api('PATCH', '/api/sales/'+id+'/paid', {paid});
+  window.renderSecretaryApp();
+};
+
+})();
+</script>
