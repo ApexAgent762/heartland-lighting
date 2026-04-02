@@ -1036,3 +1036,69 @@ window.renderEmployeeApp = async function(){
 };
 })();
 </script>
+<script>
+(function(){
+const _renderEmployeeApp = window.renderEmployeeApp;
+window.renderEmployeeApp = async function(){
+  await _renderEmployeeApp();
+  const wrap = document.getElementById('tabs-wrap');
+  const content = document.getElementById('content');
+  const newTab = document.createElement('button');
+  newTab.className = 'tab-btn';
+  newTab.textContent = 'My ranking';
+  newTab.onclick = function(){ switchTab('rank-tab', this); loadRankTab(); };
+  wrap.appendChild(newTab);
+  const newView = document.createElement('div');
+  newView.className = 'view';
+  newView.id = 'rank-tab';
+  newView.innerHTML = '<div style="font-size:14px;color:#888;padding:1rem 0;">Loading...</div>';
+  content.appendChild(newView);
+};
+
+window.loadRankTab = async function(){
+  const el = document.getElementById('rank-tab');
+  if(!el) return;
+  const [myStats, empData] = await Promise.all([
+    fetch('/api/my-stats',{credentials:'include'}).then(r=>r.json()),
+    fetch('/api/employees',{credentials:'include'}).then(r=>r.json())
+  ]);
+  const sorted = [...empData.employees].sort((a,b)=>b.revenue-a.revenue);
+  const myRank = sorted.findIndex(e=>e.name===myStats.name) + 1;
+  const total = sorted.length;
+  const fmt = n => '$'+Math.round(n).toLocaleString();
+  const pct = myRank > 0 ? Math.round(((total - myRank) / (total - 1 || 1)) * 100) : 0;
+  const isFirst = myRank === 1;
+  const rankColor = isFirst ? '#085041' : myRank <= 3 ? '#1D9E75' : '#888';
+
+  el.innerHTML = `
+    <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.5rem;margin-bottom:1rem;">
+      <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;">Your team ranking</div>
+      <div style="text-align:center;padding:1rem 0 1.25rem;">
+        <div style="font-size:13px;color:#888;margin-bottom:6px;">You are ranked</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:80px;line-height:1;color:${rankColor};">#${myRank > 0 ? myRank : '—'}</div>
+        <div style="font-size:14px;color:#888;margin-top:8px;">out of ${total} employees</div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#888;margin-bottom:6px;"><span>Last place</span><span>1st place</span></div>
+        <div style="height:12px;background:#F8F7F4;border-radius:99px;overflow:hidden;">
+          <div style="height:100%;border-radius:99px;background:${rankColor};width:${pct}%;"></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Your revenue</div>
+          <div style="font-size:20px;font-weight:600;color:#1a1a1a;">${fmt(myStats.revenue)}</div>
+        </div>
+        <div style="background:#F8F7F4;border-radius:10px;padding:.875rem 1rem;">
+          <div style="font-size:11px;color:#888;margin-bottom:4px;font-weight:500;">Your earned</div>
+          <div style="font-size:20px;font-weight:600;color:#085041;">${fmt(myStats.earned)}</div>
+        </div>
+      </div>
+      <div style="background:${isFirst?'#EAF3DE':myRank<=3?'#EAF3DE':'#FAEEDA'};border-radius:10px;padding:12px 14px;text-align:center;font-size:14px;font-weight:500;color:${isFirst?'#085041':myRank<=3?'#085041':'#633806'};">
+        ${isFirst ? 'You are leading the team — keep it up!' : myRank<=3 ? 'You are in the top 3 — push for #1!' : 'Keep closing deals to climb the ranks!'}
+      </div>
+    </div>
+  `;
+};
+})();
+</script>
