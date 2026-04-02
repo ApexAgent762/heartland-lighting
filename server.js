@@ -258,3 +258,51 @@ app.get('/api/my-rank', auth(['employee']), (req, res) => {
   const myRank = sorted.findIndex(e => e.id === req.user.id) + 1;
   res.json({ rank: myRank, total: sorted.length });
 });
+
+// Cloudinary photo upload
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: 'dzh3iu4ea',
+  api_key: '977445886732386',
+  api_secret: 'jbgKNUq-Cflnac5SrhZ42x318ZA'
+});
+
+app.post('/api/photos', auth(['employee', 'owner']), async (req, res) => {
+  try {
+    const { image, address } = req.body;
+    const result = await cloudinary.uploader.upload(image, {
+      folder: 'heartland',
+      transformation: [{ quality: 'auto', fetch_format: 'auto' }]
+    });
+    const data = loadData();
+    if (!data.photos) data.photos = [];
+    data.photos.unshift({
+      id: Date.now(),
+      userId: req.user.id,
+      employeeName: req.user.name,
+      address: address || '',
+      url: result.secure_url,
+      date: new Date().toISOString().split('T')[0]
+    });
+    saveData(data);
+    res.json({ ok: true, url: result.secure_url });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/photos', auth(), (req, res) => {
+  const data = loadData();
+  const photos = data.photos || [];
+  if (req.user.role === 'employee') {
+    return res.json(photos.filter(p => p.userId === req.user.id));
+  }
+  res.json(photos);
+});
+
+app.delete('/api/photos/:id', auth(['owner', 'secretary']), (req, res) => {
+  const data = loadData();
+  data.photos = (data.photos || []).filter(p => p.id !== parseInt(req.params.id));
+  saveData(data);
+  res.json({ ok: true });
+});
