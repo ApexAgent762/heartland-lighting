@@ -227,7 +227,7 @@ window.qSubmit=async function(){const addr=document.getElementById('qa-addr').va
 // ─── EMPLOYEE APP ───
 async function renderEmployeeApp(){
   const data=await api('GET','/api/my-stats');
-  setupTabs([{id:'my-dash',label:'My dashboard'},{id:'my-rank',label:'My ranking'},{id:'board',label:'Team board'},{id:'quote-tab',label:'Quote generator'}],'my-dash');
+  setupTabs([{id:'my-dash',label:'My dashboard'},{id:'my-rank',label:'My ranking'},{id:'gallery-tab',label:'My gallery'},{id:'board',label:'Team board'},{id:'quote-tab',label:'Quote generator'},{id:'gallery-tab',label:'My gallery'}],'my-dash');
   const goal=data.goal;const p=goal?pct(data.revenue,goal.target):0;const achieved=goal&&data.revenue>=goal.target;
   document.getElementById('my-dash').innerHTML=`<div class="earned-hero"><div class="earned-label">Your total earned</div><div class="earned-amount">${fmt(data.earned)}</div><div class="earned-sub">${data.installs} install${data.installs!==1?'s':''} · ${data.rate}% commission rate</div></div><div class="metrics"><div class="metric"><div class="metric-label">Revenue generated</div><div class="metric-value">${fmt(data.revenue)}</div></div><div class="metric"><div class="metric-label">Installs completed</div><div class="metric-value">${data.installs}</div></div></div>${goal?`<div class="goal-card ${achieved?'achieved':''}"><div class="section-label">Your goal</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div><div style="font-size:15px;font-weight:500;">${goal.prize}</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">${achieved?'You did it!':'Keep going — you\'re '+p+'% there'}</div></div><span class="badge ${achieved?'badge-achieved':'badge-goal'}">${achieved?'Achieved':p+'%'}</span></div><div class="prog-track"><div class="prog-fill ${achieved?'':'blue'}" style="width:${p}%"></div></div><div style="display:flex;justify-content:space-between;margin-top:6px;font-size:12px;color:var(--muted);"><span>Current: ${fmt(data.revenue)}</span><span>${achieved?'Goal unlocked!':'Need '+fmt(Math.max(0,goal.target-data.revenue))+' more'}</span><span>Target: ${fmt(goal.target)}</span></div></div>`:''}<div class="card" style="margin-top:1rem;"><div class="section-label">Job calendar</div><div id="emp-cal-inner"></div></div>${data.sales.length>0?`<div class="card"><div class="section-label">Recent sales</div><table class="sales-table"><tr><th>Date</th><th>Address</th><th>Amount</th><th>Earned</th></tr>${data.sales.map(s=>`<tr><td>${s.date}</td><td>${s.address||'—'}</td><td>${fmt(s.amount)}</td><td style="color:var(--green-dark);font-weight:500;">${fmt(s.amount*data.rate/100)}</td></tr>`).join('')}</table></div>`:''}`;
   buildCalendar(data.sales||[],data.rate,'emp-cal-inner',false,null);
@@ -241,11 +241,14 @@ async function renderEmployeeApp(){
 
   document.getElementById('board').innerHTML=data.posts.length===0?'<div class="card" style="color:var(--muted);font-size:14px;">No posts yet.</div>':data.posts.map(p=>postHTML(p,false)).join('');
   document.getElementById('quote-tab').innerHTML=quoteGeneratorHTML();
+document.getElementById('gallery-tab').innerHTML='<div id="gallery-inner">Loading...</div>';
+loadGallery();
+loadGallery();
 }
 
 // ─── OWNER APP ───
 async function renderOwnerApp(){
-  setupTabs([{id:'overview',label:'Overview'},{id:'summary',label:'Summary'},{id:'team',label:'Team'},{id:'goals',label:'Goals'},{id:'quotes',label:'Quotes'},{id:'payments',label:'Pay tracker'},{id:'board-owner',label:'Team board'},{id:'log-sale',label:'Log sale'},{id:'manage',label:'Manage'},{id:'owner-quote',label:'Quote generator'}],'overview');
+  setupTabs([{id:'overview',label:'Overview'},{id:'summary',label:'Summary'},{id:'team',label:'Team'},{id:'goals',label:'Goals'},{id:'quotes',label:'Quotes'},{id:'payments',label:'Pay tracker'},{id:'board-owner',label:'Team board'},{id:'log-sale',label:'Log sale'},{id:'manage',label:'Manage'},{id:'owner-quote',label:'Quote generator'},{id:'owner-gallery',label:'Job gallery'}],'overview');
   await refreshOwner();
 }
 
@@ -262,7 +265,7 @@ async function refreshOwner(){
   renderOwnerBoard(posts);
   renderLogSale(empData);
   renderManage(empData);
-  document.getElementById('owner-quote').innerHTML=quoteGeneratorHTML();
+  document.getElementById('owner-quote').innerHTML=quoteGeneratorHTML();loadOwnerGallery();
 }
 
 function renderOverview(empData,goals,allSales){
@@ -351,6 +354,39 @@ async function saveOwnerSales(){await api('POST','/api/owner-sales',{revenue:doc
 async function addEmployee(){const name=document.getElementById('m-name').value.trim();const username=document.getElementById('m-user').value.trim();const password=document.getElementById('m-pass').value.trim();const rate=document.getElementById('m-rate').value;if(!name||!username||!password)return;await api('POST','/api/employees',{name,username,password,rate});document.getElementById('m-name').value='';document.getElementById('m-user').value='';document.getElementById('m-pass').value='';document.getElementById('m-rate').value='';const c=document.getElementById('m-confirm');c.classList.remove('hidden');setTimeout(()=>c.classList.add('hidden'),3000);await refreshOwner();}
 async function updateRate(id){await api('PATCH',`/api/employees/${id}`,{rate:document.getElementById(`rate-${id}`).value});await refreshOwner();}
 async function updatePassword(id){const pw=document.getElementById(`pw-${id}`).value;if(!pw)return;await api('PATCH',`/api/employees/${id}`,{password:pw});document.getElementById(`pw-${id}`).value='';alert('Password updated!');}
+
+
+window.loadOwnerGallery=async function(){
+  const el=document.getElementById('owner-gallery');
+  if(!el)return;
+  const photos=await fetch('/api/photos',{credentials:'include'}).then(r=>r.json());
+  if(!photos.length){el.innerHTML='<div style="font-size:14px;color:#888;">No photos uploaded yet.</div>';return;}
+  el.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">'+photos.map(p=>'<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;"><img src="'+p.url+'" style="width:100%;height:160px;object-fit:cover;display:block;"><div style="padding:10px 12px;"><div style="font-size:13px;font-weight:500;color:#1a1a1a;">'+(p.address||'Job photo')+'</div><div style="font-size:11px;color:#888;margin-top:2px;">'+p.employeeName+' · '+p.date+'</div></div></div>').join('')+'</div>';
+};
+window.loadGallery=async function(){
+  const el=document.getElementById('gallery-inner');
+  if(!el)return;
+  const photos=await fetch('/api/photos',{credentials:'include'}).then(r=>r.json());
+  const grid=photos.length===0
+    ?'<div style="text-align:center;padding:2rem;font-size:14px;color:#888;">No photos yet — upload your first completed job!</div>'
+    :photos.map(p=>'<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;"><img src="'+p.url+'" style="width:100%;height:160px;object-fit:cover;display:block;"><div style="padding:10px 12px;"><div style="font-size:13px;font-weight:500;">'+( p.address||'Job photo')+'</div><div style="font-size:11px;color:#888;margin-top:2px;">'+p.date+'</div></div></div>').join('');
+  el.innerHTML='<div style="background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;margin-bottom:1rem;"><div style="font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;">Upload job photo</div><div style="margin-bottom:10px;"><label style="font-size:12px;color:#888;display:block;margin-bottom:4px;font-weight:500;">Job address</label><input type="text" id="photo-addr" placeholder="123 Main St" style="width:100%;padding:9px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;color:#1a1a1a;font-size:14px;outline:none;font-family:DM Sans,sans-serif;"></div><div style="margin-bottom:10px;"><label style="font-size:12px;color:#888;display:block;margin-bottom:4px;font-weight:500;">Photo</label><input type="file" id="photo-file" accept="image/*" style="width:100%;padding:9px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:#F8F7F4;font-size:13px;"></div><button onclick="uploadPhoto()" style="width:100%;padding:11px;border-radius:10px;background:#085041;color:#fff;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif;">Upload photo</button><div id="upload-status" style="font-size:13px;margin-top:8px;text-align:center;"></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">'+grid+'</div>';
+};
+window.uploadPhoto=async function(){
+  const addr=document.getElementById('photo-addr').value.trim();
+  const file=document.getElementById('photo-file').files[0];
+  const status=document.getElementById('upload-status');
+  if(!file){status.textContent='Please select a photo.';status.style.color='#E24B4A';return;}
+  status.textContent='Uploading...';status.style.color='#888';
+  const reader=new FileReader();
+  reader.onload=async function(e){
+    const res=await fetch('/api/photos',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify({image:e.target.result,address:addr})});
+    const data=await res.json();
+    if(data.ok){status.textContent='Uploaded!';status.style.color='#085041';loadGallery();}
+    else{status.textContent='Upload failed: '+data.error;status.style.color='#E24B4A';}
+  };
+  reader.readAsDataURL(file);
+};
 async function togglePaid(id,paid){await api('PATCH',`/api/sales/${id}/paid`,{paid});await refreshOwner();}
 async function secTogglePaid(id,paid){await api('PATCH',`/api/sales/${id}/paid`,{paid});await renderSecretaryApp();}
 (async()=>{try{const me=await api('GET','/api/me');if(me&&me.role){currentUser=me;showApp();}}catch{}})();
