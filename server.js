@@ -20,15 +20,14 @@ function loadData() {
       users: [
         { id: 1, username: 'owner', password: bcrypt.hashSync('heartland2026', 10), role: 'owner', name: 'Lane (Owner)' },
         { id: 2, username: 'secretary', password: bcrypt.hashSync('secretary2026', 10), role: 'secretary', name: 'Secretary' },
-        { id: 3, username: 'jake', password: bcrypt.hashSync('jake2026', 10), role: 'employee', name: 'Jake M.', rate: 40, color: '#E6F1FB', tc: '#0C447C' },
-        { id: 4, username: 'ryan', password: bcrypt.hashSync('ryan2026', 10), role: 'employee', name: 'Ryan T.', rate: 40, color: '#EAF3DE', tc: '#27500A' },
-        { id: 5, username: 'chris', password: bcrypt.hashSync('chris2026', 10), role: 'employee', name: 'Chris B.', rate: 50, color: '#EEEDFE', tc: '#3C3489' },
-        { id: 6, username: 'marcus', password: bcrypt.hashSync('marcus2026', 10), role: 'employee', name: 'Marcus L.', rate: 40, color: '#FAEEDA', tc: '#633806' },
-        { id: 7, username: 'derek', password: bcrypt.hashSync('derek2026', 10), role: 'employee', name: 'Derek W.', rate: 50, color: '#E1F5EE', tc: '#085041' },
-        { id: 8, username: 'sam', password: bcrypt.hashSync('sam2026', 10), role: 'employee', name: 'Sam P.', rate: 40, color: '#FAECE7', tc: '#712B13' },
-        { id: 9, username: 'tyler', password: bcrypt.hashSync('tyler2026', 10), role: 'employee', name: 'Tyler H.', rate: 40, color: '#F1EFE8', tc: '#444441' },
-        { id: 10, username: 'nate', password: bcrypt.hashSync('nate2026', 10), role: 'employee', name: 'Nate K.', rate: 40, color: '#FBEAF0', tc: '#72243E' },
-        { id: 11, username: 'austin', password: bcrypt.hashSync('austin2026', 10), role: 'employee', name: 'Austin R.', rate: 40, color: '#FCEBEB', tc: '#791F1F' },
+        { id: 3, username: 'greg', password: bcrypt.hashSync('greg2026', 10), role: 'employee', name: 'Greg Kahler', rate: 50, color: '#E6F1FB', tc: '#0C447C' },
+        { id: 4, username: 'ty', password: bcrypt.hashSync('ty2026', 10), role: 'employee', name: 'Ty Rodgers', rate: 40, color: '#EAF3DE', tc: '#27500A' },
+        { id: 5, username: 'seth', password: bcrypt.hashSync('seth2026', 10), role: 'employee', name: 'Seth Hamilton', rate: 40, color: '#EEEDFE', tc: '#3C3489' },
+        { id: 6, username: 'brayden', password: bcrypt.hashSync('brayden2026', 10), role: 'employee', name: 'Brayden Pankonen', rate: 40, color: '#FAEEDA', tc: '#633806' },
+        { id: 7, username: 'colby', password: bcrypt.hashSync('colby2026', 10), role: 'employee', name: 'Colby Dillenbeck', rate: 40, color: '#E1F5EE', tc: '#085041' },
+        { id: 8, username: 'braxton', password: bcrypt.hashSync('braxton2026', 10), role: 'employee', name: 'Braxton Hess', rate: 40, color: '#FAECE7', tc: '#712B13' },
+        { id: 9, username: 'jordan', password: bcrypt.hashSync('jordan2026', 10), role: 'employee', name: 'Jordan Kiner', rate: 40, color: '#F1EFE8', tc: '#444441' },
+        { id: 10, username: 'braeden', password: bcrypt.hashSync('braeden2026', 10), role: 'employee', name: 'Braeden Vanbockern', rate: 40, color: '#FBEAF0', tc: '#72243E' },
       ],
       sales: [], goals: [], posts: [], ownerSales: { revenue: 0, installs: 0 }
     };
