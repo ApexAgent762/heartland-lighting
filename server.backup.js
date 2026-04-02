@@ -149,38 +149,3 @@ app.patch('/api/employees/:id', auth(['owner']), (req, res) => {
 app.get('/{*path}', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
 
 app.listen(PORT, () => console.log(`Heartland running on http://localhost:${PORT}`));
-
-// Mark sale as paid
-app.patch('/api/sales/:id/paid', auth(['secretary', 'owner']), (req, res) => {
-  const data = loadData();
-  const sale = data.sales.find(s => s.id === parseInt(req.params.id));
-  if (!sale) return res.status(404).json({ error: 'Not found' });
-  sale.paid = req.body.paid;
-  saveData(data);
-  res.json({ ok: true });
-});
-
-// Weekly summary
-app.get('/api/summary', auth(['owner']), (req, res) => {
-  const data = loadData();
-  const now = new Date();
-  const weekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
-  const weekSales = data.sales.filter(s => new Date(s.date) >= weekAgo);
-  const weekRev = weekSales.reduce((s, x) => s + x.amount, 0);
-  const todaySales = data.sales.filter(s => s.date === now.toISOString().split('T')[0]);
-  const todayRev = todaySales.reduce((s, x) => s + x.amount, 0);
-  const unpaid = data.sales.filter(s => !s.paid);
-  const unpaidTotal = unpaid.reduce((s, x) => s + x.amount, 0);
-  const employees = data.users.filter(u => u.role === 'employee').map(u => {
-    const empSales = data.sales.filter(s => s.userId === u.id);
-    const revenue = empSales.reduce((s, x) => s + x.amount, 0);
-    return { id: u.id, name: u.name, revenue, earned: revenue * (u.rate / 100) };
-  });
-  const topPerformer = employees.sort((a, b) => b.revenue - a.revenue)[0];
-  res.json({ weekRev, todayRev, weekSales: weekSales.length, todaySales: todaySales.length, unpaidTotal, unpaidCount: unpaid.length, topPerformer });
-});
-
-app.get('/api/all-sales', auth(['owner', 'secretary']), (req, res) => {
-  const data = loadData();
-  res.json(data.sales.sort((a,b) => new Date(b.date) - new Date(a.date)));
-});
