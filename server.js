@@ -184,3 +184,53 @@ app.get('/api/all-sales', auth(['owner', 'secretary']), (req, res) => {
   const data = loadData();
   res.json(data.sales.sort((a,b) => new Date(b.date) - new Date(a.date)));
 });
+
+// Submit quote
+app.post('/api/quotes', auth(['employee', 'owner']), (req, res) => {
+  const data = loadData();
+  if(!data.quotes) data.quotes = [];
+  const d = new Date();
+  data.quotes.unshift({
+    id: Date.now(),
+    userId: req.user.id,
+    employeeName: req.user.name,
+    address: req.body.address,
+    building: req.body.building,
+    footage: req.body.footage,
+    price: req.body.price,
+    discount: req.body.discount || 0,
+    finalPrice: req.body.finalPrice,
+    status: 'new',
+    notes: '',
+    date: d.toISOString().split('T')[0]
+  });
+  saveData(data);
+  res.json({ ok: true });
+});
+
+// Get all quotes
+app.get('/api/quotes', auth(['owner', 'secretary']), (req, res) => {
+  const data = loadData();
+  res.json(data.quotes || []);
+});
+
+// Update quote status/notes
+app.patch('/api/quotes/:id', auth(['owner', 'secretary']), (req, res) => {
+  const data = loadData();
+  if(!data.quotes) data.quotes = [];
+  const quote = data.quotes.find(q => q.id === parseInt(req.params.id));
+  if(!quote) return res.status(404).json({ error: 'Not found' });
+  if(req.body.status !== undefined) quote.status = req.body.status;
+  if(req.body.notes !== undefined) quote.notes = req.body.notes;
+  saveData(data);
+  res.json({ ok: true });
+});
+
+// Delete quote
+app.delete('/api/quotes/:id', auth(['owner', 'secretary']), (req, res) => {
+  const data = loadData();
+  if(!data.quotes) data.quotes = [];
+  data.quotes = data.quotes.filter(q => q.id !== parseInt(req.params.id));
+  saveData(data);
+  res.json({ ok: true });
+});

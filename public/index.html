@@ -528,3 +528,138 @@ window.renderOwnerApp = async function(){
 
 })();
 </script>
+<script>
+(function(){
+
+// Add submit button to quote generator
+const _qGenerate = window.qGenerate;
+window.qGenerate = function(){
+  _qGenerate();
+  const docWrap = document.getElementById('qdoc-wrap');
+  if(!docWrap || document.getElementById('q-submit-btn')) return;
+  const btn = document.createElement('button');
+  btn.id = 'q-submit-btn';
+  btn.style.cssText = 'width:100%;padding:12px;border-radius:10px;background:#085041;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif;margin-top:8px;';
+  btn.textContent = 'Submit quote to secretary';
+  btn.onclick = async function(){
+    const addr = document.getElementById('qa-addr').value.trim();
+    const bld = document.getElementById('qa-bld').value.trim();
+    const ft = parseFloat(document.getElementById('qa-ft').value)||0;
+    const ppf = parseFloat(document.getElementById('qa-ppf').value)||0;
+    const disc = parseFloat(document.getElementById('qa-disc').value)||0;
+    const final = Math.max(0, ft*ppf - disc);
+    await api('POST', '/api/quotes', {address:addr, building:bld, footage:ft, price:ppf, discount:disc, finalPrice:final});
+    btn.textContent = 'Submitted!';
+    btn.style.background = '#1D9E75';
+    setTimeout(() => { btn.textContent = 'Submit quote to secretary'; btn.style.background = '#085041'; }, 3000);
+  };
+  docWrap.insertBefore(btn, docWrap.firstChild);
+};
+
+// Secretary quotes tab
+const _renderSecretaryApp = window.renderSecretaryApp;
+window.renderSecretaryApp = async function(){
+  await _renderSecretaryApp();
+  const wrap = document.getElementById('tabs-wrap');
+  const content = document.getElementById('content');
+  const newTab = document.createElement('button');
+  newTab.className = 'tab-btn';
+  newTab.textContent = 'Quotes';
+  newTab.onclick = function(){ switchTab('sec-quotes', this); loadSecQuotes(); };
+  wrap.appendChild(newTab);
+  const newView = document.createElement('div');
+  newView.className = 'view';
+  newView.id = 'sec-quotes';
+  newView.innerHTML = '<div style="font-size:14px;color:var(--muted,#888);padding:1rem 0;">Loading quotes...</div>';
+  content.appendChild(newView);
+};
+
+// Owner quotes tab
+const _renderOwnerApp = window.renderOwnerApp;
+window.renderOwnerApp = async function(){
+  await _renderOwnerApp();
+  const wrap = document.getElementById('tabs-wrap');
+  const content = document.getElementById('content');
+  const newTab = document.createElement('button');
+  newTab.className = 'tab-btn';
+  newTab.textContent = 'Quotes';
+  newTab.onclick = function(){ switchTab('owner-quotes', this); loadOwnerQuotes(); };
+  wrap.appendChild(newTab);
+  const newView = document.createElement('div');
+  newView.className = 'view';
+  newView.id = 'owner-quotes';
+  newView.innerHTML = '<div style="font-size:14px;color:var(--muted,#888);padding:1rem 0;">Loading quotes...</div>';
+  content.appendChild(newView);
+};
+
+const statusColors = {
+  new: {bg:'#FAEEDA', color:'#633806', label:'New'},
+  ordered: {bg:'#E6F1FB', color:'#0C447C', label:'Lights ordered'},
+  scheduled: {bg:'#EEEDFE', color:'#3C3489', label:'Scheduled'},
+  installed: {bg:'#EAF3DE', color:'#085041', label:'Installed'},
+};
+
+function quoteCard(q, canEdit){
+  const fmt = n => '$'+Math.round(n).toLocaleString();
+  const s = statusColors[q.status] || statusColors.new;
+  return `
+    <div style="background:var(--card,#fff);border:1px solid var(--border,rgba(0,0,0,0.08));border-radius:14px;padding:1.25rem;margin-bottom:10px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text,#1a1a1a);">${q.address}</div>
+          <div style="font-size:12px;color:var(--muted,#888);margin-top:2px;">${q.employeeName} · ${q.date} · ${q.footage}ft</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:18px;font-weight:600;color:#085041;">${fmt(q.finalPrice)}</div>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;background:${s.bg};color:${s.color};">${s.label}</span>
+        </div>
+      </div>
+      ${canEdit ? `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <select onchange="updateQuoteStatus(${q.id},this.value)" style="padding:7px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:var(--bg,#F8F7F4);color:var(--text,#1a1a1a);font-size:13px;font-family:'DM Sans',sans-serif;">
+          ${Object.entries(statusColors).map(([k,v])=>`<option value="${k}" ${q.status===k?'selected':''}>${v.label}</option>`).join('')}
+        </select>
+        <button onclick="deleteQuote(${q.id})" style="padding:7px;border-radius:8px;border:1px solid #E24B4A;background:transparent;color:#E24B4A;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">Remove</button>
+      </div>
+      <textarea placeholder="Notes (soffit color, special instructions...)" onchange="updateQuoteNotes(${q.id},this.value)" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.12);background:var(--bg,#F8F7F4);color:var(--text,#1a1a1a);font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:60px;">${q.notes||''}</textarea>
+      ` : `${q.notes ? `<div style="font-size:12px;color:var(--muted,#888);font-style:italic;">${q.notes}</div>` : ''}`}
+    </div>`;
+}
+
+window.loadSecQuotes = async function(){
+  const el = document.getElementById('sec-quotes');
+  if(!el) return;
+  const quotes = await api('GET', '/api/quotes');
+  if(!quotes.length){ el.innerHTML='<div style="font-size:14px;color:var(--muted,#888);">No quotes submitted yet.</div>'; return; }
+  const newQ = quotes.filter(q=>q.status==='new');
+  const otherQ = quotes.filter(q=>q.status!=='new');
+  el.innerHTML = `
+    ${newQ.length>0?`<div style="font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;">New quotes (${newQ.length})</div>${newQ.map(q=>quoteCard(q,true)).join('')}`:''}
+    ${otherQ.length>0?`<div style="font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin:12px 0 8px;">In progress / completed</div>${otherQ.map(q=>quoteCard(q,true)).join('')}`:''}
+  `;
+};
+
+window.loadOwnerQuotes = async function(){
+  const el = document.getElementById('owner-quotes');
+  if(!el) return;
+  const quotes = await api('GET', '/api/quotes');
+  if(!quotes.length){ el.innerHTML='<div style="font-size:14px;color:var(--muted,#888);">No quotes submitted yet.</div>'; return; }
+  el.innerHTML = quotes.map(q=>quoteCard(q,true)).join('');
+};
+
+window.updateQuoteStatus = async function(id, status){
+  await api('PATCH', '/api/quotes/'+id, {status});
+};
+
+window.updateQuoteNotes = async function(id, notes){
+  await api('PATCH', '/api/quotes/'+id, {notes});
+};
+
+window.deleteQuote = async function(id){
+  await api('DELETE', '/api/quotes/'+id);
+  loadSecQuotes();
+  loadOwnerQuotes();
+};
+
+})();
+</script>
