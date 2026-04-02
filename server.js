@@ -246,3 +246,15 @@ app.get('/api/my-rank', auth(['employee']), (req, res) => {
   const myRank = sorted.findIndex(e => e.id === req.user.id) + 1;
   res.json({ rank: myRank, total: sorted.length });
 });
+
+// Employee rank endpoint - returns rank only, no names or details
+app.get('/api/my-rank', auth(['employee']), (req, res) => {
+  const data = loadData();
+  const employees = data.users.filter(u => u.role === 'employee').map(u => {
+    const revenue = data.sales.filter(s => s.userId === u.id).reduce((s, x) => s + x.amount, 0);
+    return { id: u.id, revenue };
+  });
+  const sorted = employees.sort((a, b) => b.revenue - a.revenue);
+  const myRank = sorted.findIndex(e => e.id === req.user.id) + 1;
+  res.json({ rank: myRank, total: sorted.length });
+});
