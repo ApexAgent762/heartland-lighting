@@ -813,3 +813,171 @@ window.secTogglePaid = async function(id, paid){
 
 })();
 </script>
+<script>
+(function(){
+
+function buildCalendar(sales, rate, containerId, showAll, employees){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  const fmt = n => '$'+Math.round(n).toLocaleString();
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const empColors = ['#1D9E75','#378ADD','#534AB7','#BA7517','#D85A30','#D4537E','#639922','#888780','#E24B4A'];
+
+  let weekOffset = 0;
+
+  function dateStr(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+  function getWeekDates(offset){
+    const now = new Date();
+    const day = now.getDay();
+    const start = new Date(now);
+    start.setDate(now.getDate() - day + (offset*7));
+    return Array.from({length:7},(_,i)=>{ const d=new Date(start); d.setDate(start.getDate()+i); return d; });
+  }
+
+  function render(){
+    const dates = getWeekDates(weekOffset);
+    const todayStr = dateStr(new Date());
+    const startLabel = months[dates[0].getMonth()]+' '+dates[0].getDate();
+    const endLabel = months[dates[6].getMonth()]+' '+dates[6].getDate()+', '+dates[6].getFullYear();
+
+    let weekSales = sales.filter(s => {
+      const d = new Date(s.date+'T12:00:00');
+      return dates.some(wd => dateStr(wd) === dateStr(d));
+    });
+
+    const weekEarned = weekSales.reduce((sum,s) => {
+      if(showAll && employees){
+        const emp = employees.find(e=>e.id===s.userId);
+        return sum + (emp ? s.amount*(emp.rate/100) : 0);
+      }
+      return sum + s.amount*(rate/100);
+    }, 0);
+    const weekRev = weekSales.reduce((sum,s)=>sum+s.amount,0);
+
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <button onclick="window._calNav_${containerId}(-1)" style="background:none;border:0.5px solid rgba(0,0,0,0.15);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text,#1a1a1a);font-family:'DM Sans',sans-serif;">← Prev</button>
+        <div style="font-size:14px;font-weight:500;color:var(--text,#1a1a1a);">${startLabel} – ${endLabel}</div>
+        <button onclick="window._calNav_${containerId}(1)" style="background:none;border:0.5px solid rgba(0,0,0,0.15);border-radius:8px;padding:5px 12px;cursor:pointer;font-size:13px;color:var(--text,#1a1a1a);font-family:'DM Sans',sans-serif;">Next →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;">
+        <div style="background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;">${showAll?'Week revenue':'Week earned'}</div><div style="font-size:22px;font-weight:600;color:var(--text,#1a1a1a);">${showAll?fmt(weekRev):fmt(weekEarned)}</div></div>
+        <div style="background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;">Jobs this week</div><div style="font-size:22px;font-weight:600;color:var(--text,#1a1a1a);">${weekSales.length}</div></div>
+        <div style="background:var(--bg,#F8F7F4);border-radius:10px;padding:.875rem 1rem;"><div style="font-size:11px;color:var(--muted,#888);margin-bottom:4px;font-weight:500;">Avg per job</div><div style="font-size:22px;font-weight:600;color:var(--text,#1a1a1a);">${weekSales.length>0?fmt((showAll?weekRev:weekEarned)/weekSales.length):'$0'}</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:1rem;">
+        ${days.map(d=>`<div style="text-align:center;font-size:10px;font-weight:600;color:var(--muted,#888);padding:4px 0;text-transform:uppercase;letter-spacing:.04em;">${d}</div>`).join('')}
+        ${dates.map(d => {
+          const ds = dateStr(d);
+          const dayJobs = sales.filter(s => dateStr(new Date(s.date+'T12:00:00')) === ds);
+          const isToday = ds === todayStr;
+          const hasJob = dayJobs.length > 0;
+          const dots = showAll && employees ? dayJobs.map((j,i) => {
+            const emp = employees.find(e=>e.id===j.userId);
+            const color = emp ? empColors[employees.indexOf(emp) % empColors.length] : '#1D9E75';
+            return `<div style="width:8px;height:8px;border-radius:50%;background:${color};display:inline-block;margin:1px;"></div>`;
+          }).join('') : (hasJob ? `<div style="background:#EAF3DE;border-radius:4px;padding:2px 4px;font-size:10px;color:#085041;font-weight:600;margin-bottom:2px;">${dayJobs.length} job${dayJobs.length>1?'s':''}</div><div style="font-size:10px;color:#3B6D11;font-weight:500;">${fmt(dayJobs.reduce((s,j)=>s+j.amount*(rate/100),0))}</div>` : '');
+          return `<div style="background:${hasJob?'#EAF3DE':'var(--card,#fff)'};border:${isToday?'1.5px solid #1D9E75':'0.5px solid rgba(0,0,0,0.08)'};border-radius:8px;padding:6px;min-height:64px;">
+            <div style="font-size:12px;font-weight:${isToday?'700':'500'};color:${isToday?'#085041':'var(--muted,#888)'};margin-bottom:4px;">${d.getDate()}</div>
+            ${dots}
+          </div>`;
+        }).join('')}
+      </div>
+      ${weekSales.length > 0 ? `
+      <div style="background:var(--card,#fff);border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1rem 1.25rem;">
+        <div style="font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Jobs this week</div>
+        ${weekSales.map(s => {
+          const emp = showAll && employees ? employees.find(e=>e.id===s.userId) : null;
+          const earned = emp ? s.amount*(emp.rate/100) : s.amount*(rate/100);
+          const color = emp ? empColors[employees.indexOf(emp)%empColors.length] : '#1D9E75';
+          const d = new Date(s.date+'T12:00:00');
+          return `<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid rgba(0,0,0,0.06);">
+            ${showAll?`<div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;"></div>`:''}
+            <div style="font-size:12px;color:var(--muted,#888);width:${showAll?'auto':'60px'};">${days[d.getDay()]} ${d.getDate()}${showAll?'':''}</div>
+            ${emp?`<div style="font-size:12px;font-weight:500;color:var(--text,#1a1a1a);flex:1;">${emp.name}</div>`:''}
+            <div style="font-size:13px;color:var(--text,#1a1a1a);flex:${showAll?0:1};">${s.address||'—'}</div>
+            <div style="font-size:13px;font-weight:600;color:#085041;">${fmt(showAll?s.amount:earned)}</div>
+          </div>`;
+        }).join('')}
+      </div>` : '<div style="text-align:center;font-size:13px;color:var(--muted,#888);padding:1rem 0;">No jobs this week</div>'}
+    `;
+  }
+
+  window[`_calNav_${containerId}`] = function(dir){ weekOffset+=dir; render(); };
+  render();
+}
+
+// Inject into employee dashboard
+const _renderEmployeeApp = window.renderEmployeeApp;
+window.renderEmployeeApp = async function(){
+  await _renderEmployeeApp();
+  const data = await fetch('/api/my-stats', {credentials:'include'}).then(r=>r.json());
+  const myDash = document.getElementById('my-dash');
+  if(!myDash) return;
+  const calDiv = document.createElement('div');
+  calDiv.id = 'emp-calendar';
+  calDiv.style.cssText = 'margin-top:1rem;background:var(--card,#fff);border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
+  const title = document.createElement('div');
+  title.style.cssText = 'font-size:11px;font-weight:600;color:var(--muted,#888);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;';
+  title.textContent = 'Job calendar';
+  calDiv.appendChild(title);
+  const inner = document.createElement('div');
+  inner.id = 'emp-cal-inner';
+  calDiv.appendChild(inner);
+  myDash.appendChild(calDiv);
+  buildCalendar(data.sales||[], data.rate, 'emp-cal-inner', false, null);
+};
+
+// Inject into owner overview
+const _renderOverview = window.renderOverview;
+window.renderOverview = function(empData, goals){
+  _renderOverview(empData, goals);
+  setTimeout(async () => {
+    const overviewEl = document.getElementById('overview');
+    if(!overviewEl) return;
+    const salesRes = await fetch('/api/all-sales', {credentials:'include'});
+    const allSales = salesRes.ok ? await salesRes.json() : [];
+    const calDiv = document.createElement('div');
+    calDiv.style.cssText = 'margin-top:1rem;background:var(--card,#fff);border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
+    const title = document.createElement('div');
+    title.style.cssText = 'font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;';
+    title.textContent = 'Team job calendar';
+    calDiv.appendChild(title);
+    const inner = document.createElement('div');
+    inner.id = 'owner-cal-inner';
+    calDiv.appendChild(inner);
+    overviewEl.appendChild(calDiv);
+    buildCalendar(allSales, 40, 'owner-cal-inner', true, empData.employees);
+  }, 100);
+};
+
+// Inject into secretary overview
+const _renderSecretaryApp = window.renderSecretaryApp;
+window.renderSecretaryApp = async function(){
+  await _renderSecretaryApp();
+  setTimeout(async () => {
+    const secOverview = document.getElementById('sec-overview');
+    if(!secOverview) return;
+    const [salesRes, empData] = await Promise.all([
+      fetch('/api/all-sales', {credentials:'include'}),
+      fetch('/api/employees', {credentials:'include'}).then(r=>r.json())
+    ]);
+    const allSales = salesRes.ok ? await salesRes.json() : [];
+    const calDiv = document.createElement('div');
+    calDiv.style.cssText = 'margin-top:1rem;background:#fff;border:0.5px solid rgba(0,0,0,0.08);border-radius:14px;padding:1.25rem;';
+    const title = document.createElement('div');
+    title.style.cssText = 'font-size:11px;font-weight:600;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;';
+    title.textContent = 'Team job calendar';
+    calDiv.appendChild(title);
+    const inner = document.createElement('div');
+    inner.id = 'sec-cal-inner';
+    calDiv.appendChild(inner);
+    secOverview.appendChild(calDiv);
+    buildCalendar(allSales, 40, 'sec-cal-inner', true, empData.employees);
+  }, 200);
+};
+
+})();
+</script>
