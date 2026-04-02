@@ -385,3 +385,26 @@ window.renderOwnerApp = async function(){
 };
 })();
 </script>
+<script>
+(function(){
+const _qGen = window.qGenerate;
+window.qGenerate = function(){
+  _qGen();
+  const docBody = document.querySelector('.q-doc-body');
+  if(!docBody || document.getElementById('q-photo-section')) return;
+  const photoSection = document.createElement('div');
+  photoSection.id = 'q-photo-section';
+  photoSection.style.cssText = 'margin-bottom:1rem;';
+  photoSection.innerHTML = `
+    <div style="font-family:Georgia,serif;font-size:15px;margin-bottom:8px;padding-bottom:5px;border-bottom:2px solid #1D9E75;color:#1a1a1a;">See our work</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <img src="/images/IMG_8464.jpeg" style="width:100%;border-radius:8px;object-fit:cover;height:160px;" alt="Completed job">
+      <img src="/images/IMG_8072.jpeg" style="width:100%;border-radius:8px;object-fit:cover;height:160px;" alt="Completed job">
+    </div>
+  `;
+  const compSection = docBody.querySelector('.q-comp');
+  if(compSection) docBody.insertBefore(photoSection, compSection);
+  else docBody.appendChild(photoSection);
+};
+})();
+</script>
