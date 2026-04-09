@@ -324,6 +324,20 @@ async function saveOwnerSales(){await api('POST','/api/owner-sales',{revenue:doc
 async function addEmployee(){const name=document.getElementById('m-name').value.trim(),username=document.getElementById('m-user').value.trim(),password=document.getElementById('m-pass').value.trim(),rate=document.getElementById('m-rate').value;if(!name||!username||!password)return;await api('POST','/api/employees',{name,username,password,rate});document.getElementById('m-name').value='';document.getElementById('m-user').value='';document.getElementById('m-pass').value='';document.getElementById('m-rate').value='';const c=document.getElementById('m-confirm');c.classList.remove('hidden');setTimeout(()=>c.classList.add('hidden'),3000);await refreshOwner();}
 async function updateRate(id){await api('PATCH',`/api/employees/${id}`,{rate:document.getElementById(`rate-${id}`).value});await refreshOwner();}
 async function updatePassword(id){const pw=document.getElementById(`pw-${id}`).value;if(!pw)return;await api('PATCH',`/api/employees/${id}`,{password:pw});document.getElementById(`pw-${id}`).value='';alert('Password updated!');}
+async function logOwnerSale(){
+  const amount=document.getElementById('my-sale-amount').value;
+  const address=document.getElementById('my-sale-address').value;
+  const date=document.getElementById('my-sale-date').value;
+  if(!amount)return;
+  const ownerUser=await api('GET','/api/me');
+  await api('POST','/api/sales',{userId:ownerUser.id,amount,address,date});
+  document.getElementById('my-sale-amount').value='';
+  document.getElementById('my-sale-address').value='';
+  const c=document.getElementById('my-sale-confirm');
+  c.classList.remove('hidden');
+  setTimeout(()=>c.classList.add('hidden'),3000);
+  await refreshOwner();
+}
 async function togglePaid(id,paid){await api('PATCH',`/api/sales/${id}/paid`,{paid});await refreshOwner();}
 async function secTogglePaid(id,paid){await api('PATCH',`/api/sales/${id}/paid`,{paid});await renderSecretaryApp();}
 (async()=>{try{const me=await api('GET','/api/me');if(me&&me.role){currentUser=me;showApp();}}catch{}})();
