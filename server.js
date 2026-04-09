@@ -101,7 +101,7 @@ app.post('/api/sales', auth(['secretary', 'owner', 'employee']), (req, res) => {
   if (!amount) return res.status(400).json({ error: 'Missing amount' });
   const data = loadData();
   const targetUserId = userId ? parseInt(userId) : req.user.id;
-  data.sales.push({ id: Date.now(), userId: targetUserId, amount: parseFloat(amount), address: address || '', date: date || new Date().toISOString().split('T')[0], paid: false });
+  data.sales.push({ id: Date.now(), userId: targetUserId, amount: parseFloat(amount), address: address || '', customerName: req.body.customerName || '', customerPhone: req.body.customerPhone || '', date: date || new Date().toISOString().split('T')[0], paid: false });
   saveData(data);
   res.json({ ok: true });
 });
