@@ -33,7 +33,7 @@ function loadData() {
         { id: 10, username: 'braeden', password: bcrypt.hashSync('braeden2026', 10), role: 'employee', name: 'Braeden Vanbockern', rate: 40, color: '#FBEAF0', tc: '#72243E' },
         { id: 11, username: 'trey', password: bcrypt.hashSync('trey2026', 10), role: 'employee', name: 'Trey Maaland', rate: 40, color: '#FCEBEB', tc: '#791F1F' },
       ],
-      sales: [], goals: [], posts: [], photos: [], ownerSales: [], quotes: []
+      sales: [], goals: [], posts: [], photos: [], ownerSales: [], quotes: [], lightCosts: []
     };
     fs.writeFileSync(DATA_FILE, JSON.stringify(initial, null, 2));
   }
@@ -255,6 +255,34 @@ app.delete('/api/photos/:id', auth(['owner', 'secretary']), (req, res) => {
   const data = loadData();
   data.photos = (data.photos || []).filter(p => p.id !== parseInt(req.params.id));
   saveData(data); res.json({ ok: true });
+});
+
+// ── LIGHT COSTS (Revenue / Profit tracking) ──
+app.get('/api/light-costs', auth(['owner']), (req, res) => {
+  const data = loadData();
+  res.json(data.lightCosts || []);
+});
+
+app.post('/api/light-costs', auth(['owner']), (req, res) => {
+  const { description, amount, date } = req.body;
+  if (!amount) return res.status(400).json({ error: 'Missing amount' });
+  const data = loadData();
+  if (!data.lightCosts) data.lightCosts = [];
+  data.lightCosts.unshift({
+    id: Date.now(),
+    description: description || '',
+    amount: parseFloat(amount),
+    date: date || new Date().toISOString().split('T')[0]
+  });
+  saveData(data);
+  res.json({ ok: true });
+});
+
+app.delete('/api/light-costs/:id', auth(['owner']), (req, res) => {
+  const data = loadData();
+  data.lightCosts = (data.lightCosts || []).filter(c => c.id !== parseInt(req.params.id));
+  saveData(data);
+  res.json({ ok: true });
 });
 
 app.get('/{*path}', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')); });
